@@ -1,0 +1,132 @@
+* TODO Write printing class
+** Create new file class, inheriting from file, with special method for our data
+** Look at printing in JustMeasure
+*** Take prefix, and maybe info string too
+*** Make filename from datatime if not provided i.e. if filename=None
+** Takes 36 spectral values, RGB values, color space values
+** Need to save additional information in a header, how to do this by standard
+** But CSV has no standard for comments (i.e. number of measurements, interval, recalibration boolean, etc. cannot be stored
+** Use CSV module - unnecessary
+*** Allow delimiter to be ; not ,
+*** Writer example:
+ >>> import csv
+>>> spamWriter = csv.writer(open('eggs.csv', 'wb'), delimiter=' ',
+...                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
+>>> spamWriter.writerow(['Spam'] * 5 + ['Baked Beans'])
+>>> spamWriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+*** 
+"calibdata/measurements/justmeasure_" + str(prefix) + "_spec_" +
+time.strftime("%Y%m%d_%H%M") + ".txt
+** Cannot inherit from file due to no open() method
+** DONE JSON - how to write multiple nested records?
+** TODO Fix JSON to accept all possible fields, default None
+** TODO Write JSON to file
+** DONE Write CSV function manually
+*** Don't need two separate files, can be written all in one - stick comments in first line?
+*** Allow any delimiter (default tab)
+** TODO Add formatting options to CSV file, i.e. standard form, etc.
+** DONE Add grey color variables
+** TODO Ensure code meets current conventions
+*** TODO Add Docstrings
+** DONE Get context management working to catch errors using with loop - check gzip module for example
+*** Can do this by wrapping object call in closing(), then calls object.close() on error
+* TODO Set up git branch
+* DONE Measure difference in luminescence against "colour" after recalibrations
+** Use calibmonitor.py with measurePatchStimColor
+*** This returns xyY values
+** Use eizoGS320.py with encode_color to get corrected RGB values
+*** Use encode_color to get RGB values to set to monitor, same value on both greys
+** Monitor.setColor sets psychopy window to given grey value
+** Save grey values rather than just RGB values, though can easily convert between them
+** Can use decode_color to then check monitored RGB values against set greys
+** DONE Use monitor/easystim.py to set grey colour?
+** DONE Test new easystim.py on lab monitor
+** Take colours between 0 and 400 (perhaps in steps of 5)
+** Recalibrate and repeat 60 times
+** TODO How to test that colors displayed correctly - must back check RGB values
+** Calibrate with lid thing, use weight to hang over monitor
+* TODO Repeat tests against time for measurements and check effects of recalibration
+* TODO Implement measureColor in calibmonitor.py
+* TODO Adapt code from Berlin for use with an LCD monitor
+** DONE Run code
+** TODO Adapt code to use EyeOne and whatver our input is
+* TODO Port Berlin stimuli functions to psychopy
+* TODO Write testing functions - refresh rate, etc.
+** TODO Test patches against full screen
+** DONE Sinusoidal changing between 0 and 400, measure time resolution - for LCD nothing should happen. Have patch and measure the patch, change frequency of surrounding and size of patch.
+** Note measuring speed is extremely limited
+** TODO Implement threading so measurement is viable
+** TODO Have surround at X, and measure patch changing from 0 to X - patch should be resizeable, luminance function varies with size of patch
+** TODO Test with gratings, horizontal and vertical - measure overall luminance by eye/with spectrometer through box - measure overall luminance against spatial frequency
+** TODO Flip the orientation of grating stripes
+** TODO Switch very fast from black to white on monitor - as fast as possible, test if see grey when above human framerate
+** DONE Make patch and flicker background, vary stimuli size until we obtain constant value (no surround effects) - both maximum and minimum limits, different colour stimulus, change frequency of modulation of surround - find frequency where there is no change - modulate with sin curve, and try limiting between dark grey and light grey i.e. changing amplitude
+** TODO Colour of patch in surround, see if luminance function changes, change stimulus size
+** TODO Check Hysteresis i.e. go up and down on already color plot - should get no difference
+** TODO Possibly contribute to psychopy monitor centre
+** TODO Add eyeone to photometers list
+** On flcikering surrounds expect to observe flicker in centre patch
+** Make separate github repo
+** Their notes:
+ - Measuring hysterisis: Do a luminance test from 0 to max, then max to 0, then random.
+ - CRT test: Small region test at the centre of CRT, check min, middle, max, luminance.  Then,sin wave modulation of the rest of the screen while measuring centre. This is a powersupply issue. Modulate sin wave frequency to measure responsiveness. Square waves are even harsher on the CRT. Allowing naked eye testing is also good, since the frequency of modulation may be intense for crappy photometers.
+ - Gamma curve measurements are actually dependent on the size of the patch being modulated. Full screen monochromes can't be as bright as small patches in front of the photometer. Differences can be as extreme as 15%.
+ - Watch out for energy saving 'features'!
+ - Grey background, square wave patch. Rotate the square wave ninety degrees, and measure the change in mean luminance of the patch. There will be a difference on the flip. Measure the effect as a function of frequency. Second dimension can be contrast of square wave.
+ - Two stimuli, superimposed mean luminance is equal to background. At high enough frequencies, the stimuli should be invisible. The photometer will probably be fine with this, but if one's eyes are moving too much, it will look terrible. Look through a tube and the effect will probably go away. Anyway, the point is, is that this is a great test for frame dropping.
+** Tino's notes:
+calibration: (hysteresis)
+- from 0 to 255
+- from 255 to 0
+- random
+
+Put photometer in the mid and make a surround modulation
+(black->white->black..., with eye 10Hz modulation).
+
+Central patch is set to constant color (black, grey, white).
+
+Change the size of the patch, until no change occurs.
+
+Change flip colors to bright gray and dark gray until no change occurs.
+
+Screen:
+----------------
+-              -
+-              -
+-    xxxxxx    -
+-    xxxxxx    -
+-    xxxxxx    -
+-              -
+-              -
+----------------
+
+Measure gamma function with small patch in the middle.
+
+Change central patch in size until it is the whole screen.
+
+It matters which color you put in the surround!
+
+Mean luminance of patch
+=======================
+
+Background as in experiment.
+
+Size of test stimulus as in experiment.
+
+Measure mean luminance of stimulus.
+
+Present a black and white grid on the stimulus and transpose it.
+** Re-write from scratch using psychopy, then link RGB values to our modification and overlay stuff
+* TODO Fix typos in documentation
+* TODO Check changes of x,y values - should not change systematically
+* TODO Use small patch to measure spatial change in luminance - plot graphs
+* TODO Fit function to psychometric functions
+** Something like a growing ellipse, flower
+* TODO Calculate the geometry of the light entering an aperture and how it varies with distance
+** Effectively infinite source, for point observer is constant in 3D
+* TODO Fix graphics card problem so that second monitor automatically applies the red/green channel overlay
+* TODO Use diodes with analog input to check light from voltage tubes directly
+* TODO Gamma correction? - DICOM standard monitor
+
+* TODO Copy encode_color function to have only one central stimulus
+* TODO Attempt to write swirly wheel
