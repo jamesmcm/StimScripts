@@ -30,7 +30,7 @@ time.strftime("%Y%m%d_%H%M") + ".txt
 *** TODO Add Docstrings
 ** DONE Get context management working to catch errors using with loop - check gzip module for example
 *** Can do this by wrapping object call in closing(), then calls object.close() on error
-* TODO Set up git branch
+* DONE Set up git branch
 * DONE Measure difference in luminescence against "colour" after recalibrations
 ** Use calibmonitor.py with measurePatchStimColor
 *** This returns xyY values
@@ -52,21 +52,21 @@ time.strftime("%Y%m%d_%H%M") + ".txt
 ** TODO Adapt code to use EyeOne and whatver our input is
 * TODO Port Berlin stimuli functions to psychopy
 * TODO Write testing functions - refresh rate, etc.
-** TODO Test patches against full screen
+** TODO Test patches against full screen - check spatial homogenity
 ** DONE Sinusoidal changing between 0 and 400, measure time resolution - for LCD nothing should happen. Have patch and measure the patch, change frequency of surrounding and size of patch.
 ** Note measuring speed is extremely limited
-** TODO Implement threading so measurement is viable
+** TODO Implement threading so measurement is viable - still not that useful though, ask Nora
 ** TODO Have surround at X, and measure patch changing from 0 to X - patch should be resizeable, luminance function varies with size of patch
 ** TODO Test with gratings, horizontal and vertical - measure overall luminance by eye/with spectrometer through box - measure overall luminance against spatial frequency
 ** TODO Flip the orientation of grating stripes
 ** TODO Switch very fast from black to white on monitor - as fast as possible, test if see grey when above human framerate
 ** DONE Make patch and flicker background, vary stimuli size until we obtain constant value (no surround effects) - both maximum and minimum limits, different colour stimulus, change frequency of modulation of surround - find frequency where there is no change - modulate with sin curve, and try limiting between dark grey and light grey i.e. changing amplitude
 ** TODO Colour of patch in surround, see if luminance function changes, change stimulus size
-** TODO Check Hysteresis i.e. go up and down on already color plot - should get no difference
+
 ** TODO Possibly contribute to psychopy monitor centre
 ** TODO Add eyeone to photometers list
 ** On flcikering surrounds expect to observe flicker in centre patch
-** Make separate github repo
+** DONE Make separate github repo
 ** Their notes:
  - Measuring hysterisis: Do a luminance test from 0 to max, then max to 0, then random.
  - CRT test: Small region test at the centre of CRT, check min, middle, max, luminance.  Then,sin wave modulation of the rest of the screen while measuring centre. This is a powersupply issue. Modulate sin wave frequency to measure responsiveness. Square waves are even harsher on the CRT. Allowing naked eye testing is also good, since the frequency of modulation may be intense for crappy photometers.
@@ -118,6 +118,8 @@ Measure mean luminance of stimulus.
 Present a black and white grid on the stimulus and transpose it.
 ** Re-write from scratch using psychopy, then link RGB values to our modification and overlay stuff
 * TODO Fix typos in documentation
+* DONE Check Hysteresis i.e. go up and down on already color plot - should get no difference
+*** No hysteresis problems observed - hgraph1.eps
 * TODO Check changes of x,y values - should not change systematically
 * TODO Use small patch to measure spatial change in luminance - plot graphs
 * TODO Fit function to psychometric functions
