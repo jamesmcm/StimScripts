@@ -117,6 +117,10 @@ Measure mean luminance of stimulus.
 
 Present a black and white grid on the stimulus and transpose it.
 ** Re-write from scratch using psychopy, then link RGB values to our modification and overlay stuff
+** TODO Implement frame draw checking so it doesn't have vsync errors
+** TODO Make two sin-wave luminance grating stimuli images - make full images with recolored BG so can be displayed directly, at high frame rate should be invisible
+** TODO Make black/white luminance fringes, when rotated should appear the same luminance through square view
+
 * TODO Fix typos in documentation
 * DONE Check Hysteresis i.e. go up and down on already color plot - should get no difference
 *** No hysteresis problems observed - hgraph1.eps
@@ -131,4 +135,9 @@ Present a black and white grid on the stimulus and transpose it.
 * TODO Gamma correction? - DICOM standard monitor
 
 * TODO Copy encode_color function to have only one central stimulus
+** TODO Use pygame calls directly - surfarray from screen, then modify the surfarray and blit that
+** blit flags? blit multiply flag?
+** BLEND_RGB_MIN
+** But how to co-operate with psychopy
+** Perhaps make imaginary 2048x1536 screen to draw to (surf array or something) which is then converted to 1024x1536 in final step
 * TODO Attempt to write swirly wheel
