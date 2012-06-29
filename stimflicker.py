@@ -3,20 +3,22 @@
 #
 # GPL 3.0+ or (cc) by-sa (http://creativecommons.org/licenses/by-sa/3.0/)
 
-""" crttest.py :
-Small region test at the centre of CRT, check min, middle, max, luminance.  Then,sin wave modulation of the rest of the screen while measuring centre. This is a powersupply issue. Modulate sin wave frequency to measure responsiveness. Square waves are even harsher on the CRT. Allowing naked eye testing is also good, since the frequency of modulation may be intense for crappy photometers."""
+""" stimflicker.py :
+
+ Two stimuli, superimposed mean luminance is equal to background. At high enough frequencies, the stimuli should be invisible. The photometer will probably be fine with this, but if one's eyes are moving too much, it will look terrible. Look through a tube and the effect will probably go away. Anyway, the point is, is that this is a great test for frame dropping.
+"""
 
 #Oft-changed constants here:
 usingeizo=False
-measuring=False
+measuring=False #Measuring unimplemented here, spectrometer too slow
 patchsize=0.5 #Size relative to window - i.e. whole monitor
 waittime=0.001 #Perhaps change this to more accurate frame-basis
-freq=0.001 #This affects how big the steps are we sample in the sin function
 calibrate = True
 prefix="cdata"
-centralstimgray=400
-sinamplitude=1023 #Modify these values to change greys oscillated between
-sinoffset=0
+centralstimgray=511
+highgray=1023
+lowgray=0
+
 
 if usingeizo==False:
     #Testing stuff
@@ -77,7 +79,7 @@ color_list = []
 #set monitor color
 
 #For eizo: 1024x1536, screen 1
-mywin = visual.Window(monitorsize, monitor="mymon", color=eizoGS320.encode_color(0,0), winType="pygame", screen=monitornum, colorSpace="rgb255", allowGUI=False, units="pix")
+mywin = visual.Window(monitorsize, monitor="mymon", color=eizoGS320.encode_color(0,0), screen=monitornum, colorSpace="rgb255", allowGUI=False, units="pix")
 
 bgstim=visual.PatchStim(mywin, tex=None, units='norm', pos=(0, 0), size=2, colorSpace=mywin.colorSpace, color=eizoGS320.encode_color(0, 0))
 centralstim=visual.PatchStim(mywin, tex=None, units='norm', pos=(0, 0), size=patchsize, colorSpace=mywin.colorSpace, color=eizoGS320.encode_color(centralstimgray, centralstimgray))
@@ -112,15 +114,12 @@ with closing(CalibDataFile(prefix=prefix)) as datafile:
                 running=False
                 break
 
-        graystim=(sinamplitude*abs(math.sin(2*math.pi*freq*n)))+sinoffset
-        color=eizoGS320.encode_color(graystim, graystim)
-        #color = [x/128.-1 for x in color]
-        #mywin.setColor(color, 'rgb255')
-        bgstim.setColor(color)
-        print 1023*abs(math.sin(2*math.pi*freq*n))
-        print color
+        if n%2 == 0:
+            bgstim.setColor(eizoGS320.encode_color(lowgray, lowgray))
+        else:
+            bgstim.setColor(eizoGS320.encode_color(highgray, highgray))
         n+=1
-        n = n % (1./freq)
+        n = n % 2
         print n
         bgstim.draw()
         centralstim.draw()
@@ -134,5 +133,5 @@ with closing(CalibDataFile(prefix=prefix)) as datafile:
             else:
                 print("Color Space " + str(colorspace[:]) + "\n")
                 color_list.append(colorspace[:])
-                datafile.writeDataTXT(grayvals=[graystim, centralstimgray], rgb=None, xyY=colorspace, voltage=None, spec_list=None, delimiter="\t")
-        time.sleep(waittime)
+                #datafile.writeDataTXT(grayvals=[graystim, centralstimgray], rgb=None, xyY=colorspace, voltage=None, spec_list=None, delimiter="\t")
+        #time.sleep(waittime)
