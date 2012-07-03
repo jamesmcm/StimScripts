@@ -47,22 +47,20 @@ time.strftime("%Y%m%d_%H%M") + ".txt
 ** Calibrate with lid thing, use weight to hang over monitor
 * TODO Repeat tests against time for measurements and check effects of recalibration
 * TODO Implement measureColor in calibmonitor.py
-* TODO Adapt code from Berlin for use with an LCD monitor
+* DONE Adapt code from Berlin for use with an LCD monitor
 ** DONE Run code
 ** TODO Adapt code to use EyeOne and whatver our input is
-* TODO Port Berlin stimuli functions to psychopy
+* DONE Port Berlin stimuli functions to psychopy - re-do Cornsweet
 * TODO Write testing functions - refresh rate, etc.
 ** TODO Test patches against full screen - check spatial homogenity
 ** DONE Sinusoidal changing between 0 and 400, measure time resolution - for LCD nothing should happen. Have patch and measure the patch, change frequency of surrounding and size of patch.
 ** Note measuring speed is extremely limited
 ** TODO Implement threading so measurement is viable - still not that useful though, ask Nora
 ** TODO Have surround at X, and measure patch changing from 0 to X - patch should be resizeable, luminance function varies with size of patch
-** TODO Test with gratings, horizontal and vertical - measure overall luminance by eye/with spectrometer through box - measure overall luminance against spatial frequency
-** TODO Flip the orientation of grating stripes
-** TODO Switch very fast from black to white on monitor - as fast as possible, test if see grey when above human framerate
+** DONE Test with gratings, horizontal and vertical - measure overall luminance by eye/with spectrometer through box - measure overall luminance against spatial frequency
+** DONE Flip the orientation of grating stripes
 ** DONE Make patch and flicker background, vary stimuli size until we obtain constant value (no surround effects) - both maximum and minimum limits, different colour stimulus, change frequency of modulation of surround - find frequency where there is no change - modulate with sin curve, and try limiting between dark grey and light grey i.e. changing amplitude
-** TODO Colour of patch in surround, see if luminance function changes, change stimulus size
-
+** DONE Colour of patch in surround, see if luminance function changes, change stimulus size
 ** TODO Possibly contribute to psychopy monitor centre
 ** TODO Add eyeone to photometers list
 ** On flcikering surrounds expect to observe flicker in centre patch
@@ -118,10 +116,12 @@ Measure mean luminance of stimulus.
 Present a black and white grid on the stimulus and transpose it.
 ** Re-write from scratch using psychopy, then link RGB values to our modification and overlay stuff
 ** TODO Implement frame draw checking so it doesn't have vsync errors
-** TODO Make two sin-wave luminance grating stimuli images - make full images with recolored BG so can be displayed directly, at high frame rate should be invisible
-** TODO Make black/white luminance fringes, when rotated should appear the same luminance through square view
+** DONE Make two sin-wave luminance grating stimuli images - make full images with recolored BG so can be displayed directly, at high frame rate should be invisible
+** DONE Make black/white luminance fringes, when rotated should appear the same luminance through square view
 
+* TODO Run measurements for line switching, varying size of patch and brightness
 * TODO Fix typos in documentation
+* TODO Document new scripts
 * DONE Check Hysteresis i.e. go up and down on already color plot - should get no difference
 *** No hysteresis problems observed - hgraph1.eps
 * TODO Check changes of x,y values - should not change systematically
@@ -130,10 +130,10 @@ Present a black and white grid on the stimulus and transpose it.
 ** Something like a growing ellipse, flower
 * TODO Calculate the geometry of the light entering an aperture and how it varies with distance
 ** Effectively infinite source, for point observer is constant in 3D
+** Measure light at monitor, and then at distance with viewing box
 * TODO Fix graphics card problem so that second monitor automatically applies the red/green channel overlay
 * TODO Use diodes with analog input to check light from voltage tubes directly
 * TODO Gamma correction? - DICOM standard monitor
-
 * TODO Copy encode_color function to have only one central stimulus
 ** TODO Use pygame calls directly - surfarray from screen, then modify the surfarray and blit that
 ** blit flags? blit multiply flag?
