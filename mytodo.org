@@ -45,13 +45,14 @@ time.strftime("%Y%m%d_%H%M") + ".txt
 ** Recalibrate and repeat 60 times
 ** TODO How to test that colors displayed correctly - must back check RGB values
 ** Calibrate with lid thing, use weight to hang over monitor
-* TODO Repeat tests against time for measurements and check effects of recalibration
+* DONE Repeat tests against time for measurements and check effects of recalibration
 * TODO Implement measureColor in calibmonitor.py
 * DONE Adapt code from Berlin for use with an LCD monitor
 ** DONE Run code
 ** TODO Adapt code to use EyeOne and whatver our input is
 * DONE Port Berlin stimuli functions to psychopy - re-do Cornsweet
-* TODO Write testing functions - refresh rate, etc.
+* DONE Tidy scripts
+* DONE Write testing functions - refresh rate, etc.
 ** TODO Test patches against full screen - check spatial homogenity
 ** DONE Sinusoidal changing between 0 and 400, measure time resolution - for LCD nothing should happen. Have patch and measure the patch, change frequency of surrounding and size of patch.
 ** Note measuring speed is extremely limited
@@ -119,9 +120,10 @@ Present a black and white grid on the stimulus and transpose it.
 ** DONE Make two sin-wave luminance grating stimuli images - make full images with recolored BG so can be displayed directly, at high frame rate should be invisible
 ** DONE Make black/white luminance fringes, when rotated should appear the same luminance through square view
 
-* TODO Run measurements for line switching, varying size of patch and brightness
+* DONE Run measurements for line switching
+* TODO Measure for varying size of patch and brightness
 * TODO Fix typos in documentation
-* TODO Document new scripts
+* DONE Document new scripts
 * DONE Check Hysteresis i.e. go up and down on already color plot - should get no difference
 *** No hysteresis problems observed - hgraph1.eps
 * TODO Check changes of x,y values - should not change systematically
@@ -134,6 +136,7 @@ Present a black and white grid on the stimulus and transpose it.
 * TODO Fix graphics card problem so that second monitor automatically applies the red/green channel overlay
 * TODO Use diodes with analog input to check light from voltage tubes directly
 * TODO Gamma correction? - DICOM standard monitor
+** TODO Fit curves to gamma curve data
 * TODO Copy encode_color function to have only one central stimulus
 ** TODO Use pygame calls directly - surfarray from screen, then modify the surfarray and blit that
 ** blit flags? blit multiply flag?
@@ -141,3 +144,19 @@ Present a black and white grid on the stimulus and transpose it.
 ** But how to co-operate with psychopy
 ** Perhaps make imaginary 2048x1536 screen to draw to (surf array or something) which is then converted to 1024x1536 in final step
 * TODO Attempt to write swirly wheel
+* TODO Modify Berlin code so can choose whther to make spherical modification or not
+* DONE Add exception for black screen when image is too big
+** TODO Yes, there are lots of sanity checks like this that would be great to
+add (is the stimulus being presented smaller than a pixel? Is its
+position off the screen?) although I think I'd suggest that they raise
+logging.warning() rather than an error in case someone deliberately
+wants them to occur. 
+* TODO Add class for stimuli producing
+** BaseMonitorTesting - collecting data, presenting stimuli
+** MonitorTestingSinwave - says how sin wave should be created
+** Take data files argument - if no data then create stimuli
+* TODO Measure x/y lines with new factor of 2 division - do 1 pixel and measure at monitor, then do 8, 32 pixels - take 30 measurements
+* TODO Analyse gamma fitting data
+
+Printer 248 HP
+* TODO Measure 10 points throughout colour shades from 10 to 850, with 10 recalibrations, 30 times each

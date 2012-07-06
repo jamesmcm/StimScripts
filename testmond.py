@@ -1,5 +1,6 @@
 """
-Produces Mondrian stimuli using functions from TU Berlin's TUBvision code.
+testmond.py:
+Produces Mondrian stimuli using functions from TU Berlin's TUBvision code. The functions called are in TUBvision's mondrian.py
 """
 if __name__=='__main__':
 

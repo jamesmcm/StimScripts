@@ -4,7 +4,7 @@
 # GPL 3.0+ or (cc) by-sa (http://creativecommons.org/licenses/by-sa/3.0/)
 
 """ gamma.py :
-Compare luminance of big patch and small patch, on CRT big patch should always be less bright.
+Compare luminance of big patch and small patch, on CRT big patch should always be less bright. Can use up and down arrow keys to modify the size of the patch whilst running.
 """
 if __name__=='__main__':
     #Oft-changed constants here:

@@ -5,7 +5,7 @@
 
 """ showstim.py :
 
-Simple script to present a chosen stimuli from PNG on to the screen.
+Simple script to present a chosen stimuli from PNG on to the screen. Change stimulus shown with imagename variable.
 """
 
 if __name__=='__main__':
@@ -15,7 +15,7 @@ if __name__=='__main__':
     waittime=1 #Perhaps change this to more accurate frame-basis
     calibrate = True
     prefix="cdata"
-    imagename="mondtest2.png"
+    imagename="broke.png"
     import time
 
     from ctypes import c_float
@@ -128,3 +128,6 @@ if __name__=='__main__':
                     color_list.append(colorspace[:])
                     #datafile.writeDataTXT(grayvals=[graystim, centralstimgray], rgb=None, xyY=colorspace, voltage=None, spec_list=None, delimiter="\t")
             time.sleep(waittime)
+
+
+print "Exited nicely"

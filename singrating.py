@@ -4,7 +4,9 @@
 # GPL 3.0+ or (cc) by-sa (http://creativecommons.org/licenses/by-sa/3.0/)
 
 """ singrating.py :
+Produces a sin-wave based stimuli across the screen, which is then shifted to anti-phase and re-presented rapidly.
 
+TUB notes:
  Two stimuli, superimposed mean luminance is equal to background. At high enough frequencies, the stimuli should be invisible. The photometer will probably be fine with this, but if one's eyes are moving too much, it will look terrible. Look through a tube and the effect will probably go away. Anyway, the point is, is that this is a great test for frame dropping.
 """
 if __name__=='__main__':

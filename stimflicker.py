@@ -5,7 +5,7 @@
 
 """ stimflicker.py :
 
- Two stimuli, superimposed mean luminance is equal to background. At high enough frequencies, the stimuli should be invisible. The photometer will probably be fine with this, but if one's eyes are moving too much, it will look terrible. Look through a tube and the effect will probably go away. Anyway, the point is, is that this is a great test for frame dropping.
+Flickers the background behind the square stimulus. Produced from misunderstanding of other test, probably not useful.
 """
 
 #Oft-changed constants here:

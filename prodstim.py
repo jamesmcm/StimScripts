@@ -17,7 +17,7 @@ if __name__=='__main__':
 
     #nparray= whites_illusion_bmcc((3, 4), 512, 1, 2, mean_lum=511,  start='high')
     #nparray=square_wave((3,4), 512, 1, 5, mean_lum=512, period='ignore', start='high')
-    nparray=whites_illusion_gil((3,4), 512, 1, 5, mean_lum=512, start='low')
+    nparray=whites_illusion_gil((6,8), 256, 1, 5, mean_lum=512, start='low')
     #ppl.imshow(nparray)
     #pylab.show()
 

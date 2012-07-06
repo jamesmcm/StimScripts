@@ -4,6 +4,9 @@
 # GPL 3.0+ or (cc) by-sa (http://creativecommons.org/licenses/by-sa/3.0/)
 
 """ crttest.py :
+Produces a patch of a certain luminance in the centre of the screen, and modulates the surround according to a sin function.
+
+TUB notes:
 Small region test at the centre of CRT, check min, middle, max, luminance.  Then,sin wave modulation of the rest of the screen while measuring centre. This is a powersupply issue. Modulate sin wave frequency to measure responsiveness. Square waves are even harsher on the CRT. Allowing naked eye testing is also good, since the frequency of modulation may be intense for crappy photometers."""
 
 

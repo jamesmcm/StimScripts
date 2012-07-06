@@ -5,7 +5,7 @@
 
 """ lines.py :
 
-Create series of lines, swap between horizontal and vertical - check for change in overall luminance.
+Create series of lines, swap between horizontal and vertical - check for change in overall luminance. Modify line width in pixels with linewidth variable.
 """
 
 if __name__=='__main__':
