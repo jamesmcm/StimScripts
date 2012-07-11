@@ -151,12 +151,18 @@ add (is the stimulus being presented smaller than a pixel? Is its
 position off the screen?) although I think I'd suggest that they raise
 logging.warning() rather than an error in case someone deliberately
 wants them to occur. 
+* TODO Add exception if position shifts imagestim off window
 * TODO Add class for stimuli producing
 ** BaseMonitorTesting - collecting data, presenting stimuli
 ** MonitorTestingSinwave - says how sin wave should be created
 ** Take data files argument - if no data then create stimuli
+** TODO Write generic looping function - in a way such that threads may be used?
 * TODO Measure x/y lines with new factor of 2 division - do 1 pixel and measure at monitor, then do 8, 32 pixels - take 30 measurements
 * TODO Analyse gamma fitting data
 
 Printer 248 HP
 * TODO Measure 10 points throughout colour shades from 10 to 850, with 10 recalibrations, 30 times each
+* TODO Fix producing unencoded mondrian
+* TODO FIx pixel rounding errors - on Cornsweet
+* TODO Add greyvals for stimuli so measurement works
+* TODO Fix bug with monitorsize -if using eizo want to produce stimuli for 2048 but project at 1024

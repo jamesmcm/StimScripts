@@ -100,7 +100,7 @@ if __name__=='__main__':
                 print("Calibration done.")
             else:
                 print("Calibration failed.")
-                print("\nPlease put EyeOne Pro in measurement position and press \n key to start measurement.")
+            print("\nPlease put EyeOne Pro in measurement position and press \n key to start measurement.")
 
             while(EyeOne.I1_KeyPressed() != EyeOneConstants.eNoError):
                 time.sleep(0.1)

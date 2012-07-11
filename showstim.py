@@ -15,7 +15,7 @@ if __name__=='__main__':
     waittime=1 #Perhaps change this to more accurate frame-basis
     calibrate = True
     prefix="cdata"
-    imagename="broke.png"
+    imagename="testpng.png"
     import time
 
     from ctypes import c_float
@@ -33,6 +33,7 @@ if __name__=='__main__':
         import os
         os.chdir("/home/jamesmcm/git/achrolabutils")
         #End testing
+        #        monitorsize=[1024,768]
         monitorsize=[1024,768]
         monitornum=0
         from achrolab.printing import CalibDataFile
