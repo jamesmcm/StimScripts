@@ -1,5 +1,5 @@
 from achrolab.printing import CalibDataFile
-from achrolab.eyeone import EyeOne, EyeOneConstants
+from achrolab.eyeone import eyeone, EyeOneConstants
 from ctypes import c_float
 from contextlib import closing
 from psychopy import visual
@@ -50,7 +50,7 @@ class BaseMonitorTesting():
         else:
             self.monitorsize=[1024, 1536] #size of Eizo screen (half actualy monitor width)
             self.monitornum=1
-            self.EyeOne = EyeOne.EyeOne(dummy=False) # Actual EyeOne Object
+            self.EyeOne = eyeone.EyeOne(dummy=False) # Actual EyeOne Object
 
 
         if measuring==True:
@@ -128,11 +128,11 @@ class BaseMonitorTesting():
         if(self.EyeOne.I1_TriggerMeasurement() != EyeOneConstants.eNoError):
             print("Measurement failed.")
             # retrieve Color Space
-            if(self.EyeOne.I1_GetTriStimulus(self.colorspace, 0) != EyeOneConstants.eNoError):
-                print("Failed to get color space.")
-            else:
-                print("Color Space " + str(self.colorspace[:]) + "\n")
-                datafile.writeDataTXT(grayvals=self.grayvals, rgb=None, xyY=self.colorspace, voltage=None, spec_list=None, delimiter="\t")
+        if(self.EyeOne.I1_GetTriStimulus(self.colorspace, 0) != EyeOneConstants.eNoError):
+            print("Failed to get color space.")
+        else:
+            print("Color Space " + str(self.colorspace[:]) + "\n")
+            datafile.writeDataTXT(grayvals=self.grayvals, rgb=None, xyY=self.colorspace, voltage=None, spec_list=None, delimiter="\t")
 
     def runningLoop(self):
         """
@@ -566,6 +566,7 @@ class Lines(BaseMonitorTesting):
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, pngfiles=None, encode=True, monitorsize=None, lowgray=0, highgray=1023, linewidth=8):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
         self.linepngs=[]
+        self.grayvals=[highgray, lowgray]
         if pngfiles==None:
             if monitorsize==None:
                 monitorsize=self.monitorsize
@@ -602,8 +603,8 @@ class Lines(BaseMonitorTesting):
             pil_imx = Image.fromarray(nparrayx)
             pil_imy = Image.fromarray(nparrayy)
             timem=str(time.strftime("%Y%m%d_%H%M"))
-            self.linepngs.append("linesx"+timem+".png")
-            self.linepngs.append("linesy"+timem+".png")
+            self.linepngs.append(str(linewidth)+"linesx"+timem+".png")
+            self.linepngs.append(str(linewidth)+"linesy"+timem+".png")
             pil_imx.save(self.linepngs[0])
             pil_imy.save(self.linepngs[1])
 
@@ -626,6 +627,11 @@ class Lines(BaseMonitorTesting):
         self.linesx=visual.SimpleImageStim(self.window, image=self.linepngs[0], units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='linesx', autoLog=True)
         self.linesy=visual.SimpleImageStim(self.window, image=self.linepngs[1], units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='linesy', autoLog=True)
         self.n=0
+        if self.measuring==True:
+            print("\nPlease put EyeOne Pro in measurement position and press \n key to start measurement.")
+            while(self.EyeOne.I1_KeyPressed() != EyeOneConstants.eNoError):
+                time.sleep(0.1)
+            print("Starting measurement...")
         self.runningLoop()
 
 class SinGrating(BaseMonitorTesting):
