@@ -167,3 +167,8 @@ wants them to occur.
 * DONE Add greyvals for stimuli so measurement works
 * DONE Fix bug with monitorsize -if using eizo want to produce stimuli for 2048 but project at 1024 - just override size
 * DONE Do square test
+* TODO Do psychopy central error management
+* TODO Document measurements - lines + problem, hysteresis loop, random gamma measurements, gamma measurements against size of patch, document output gray values, document problem with threading
+* TODO Fix broken experiment2, memory problem with PNGs?
+* TODO Mondrian and transparent infield - use transparency equation, Metelli
+
