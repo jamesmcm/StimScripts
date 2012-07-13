@@ -164,6 +164,6 @@ wants them to occur.
 * DONE Measure 10 points throughout colour shades from 10 to 850, with 10 recalibrations, 30 times each
 * DONE Fix producing unencoded mondrian
 * TODO FIx pixel rounding errors - on Cornsweet
-* TODO Add greyvals for stimuli so measurement works
+* DONE Add greyvals for stimuli so measurement works
 * DONE Fix bug with monitorsize -if using eizo want to produce stimuli for 2048 but project at 1024 - just override size
 * DONE Do square test

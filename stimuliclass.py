@@ -231,16 +231,13 @@ class CRTTest(BaseMonitorTesting):
 
 class Mondrian(BaseMonitorTesting):
     '''
-    This class is a wrapper for the Mondrian generation code from TU Berlin. It produces a Mondrian to a  PNG if no PNG file is provided in the pngfile argument, otherwise it will display the Mondrian with run(). Still need to fix the unencoded version.
+    This class is a wrapper for the Mondrian generation code from TU Berlin. It produces a Mondrian to a  PNG if no PNG file is provided in the pngfile argument, otherwise it will display the Mondrian with run().
 
     TU Berlin notes:
         Create a mondrian on which the difference between desired color distribution and actual color distribution is smaller than some accuracy value. If no randomly created mondrian fulfills this criterion before some cycle count is reached, the best mondrian generated so far is returned.
 
     .. warning::
         Note one must manually set the image size to (2048, 1536) if producing stimuli for the black and white monitor.
-
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
 
     This class inherits from BaseMonitorTesting.
 
@@ -264,7 +261,7 @@ class Mondrian(BaseMonitorTesting):
    max_cycles         Integer         1000        The maximal number of mondrians created before the function aborts and returns the best mondrian so far.
    pngfile            String          None        The path to the pre-made PNG file if one wishes to display a pre-made Mondrian.
    imagesize          List(2*Integer) None        The size of the Mondrian to be generated, as a 2 element list [X,Y]. If None uses defined monitor size.
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    ================ ================= =========== ========================================================================================================================
 
     '''
@@ -312,8 +309,7 @@ class Cornsweet(BaseMonitorTesting):
         The 2D luminance profile of the stimulus is defined as L = L_mean +/- (1 - X / w) ** a * L_mean * C/2 for the ramp and L = L_mean for the area beyond the ramp.
         X is the distance to the edge, w is the width of the ramp, a is a variable determining the steepness of the ramp, and C is the contrast at the edge, defined as C = (L_max-L_min) / L_mean.
 
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
+
 
     This class inherits from BaseMonitorTesting.
 
@@ -335,7 +331,7 @@ class Cornsweet(BaseMonitorTesting):
    exponent           Float           2.75        Determines the steepness of the ramp. An exponent value of 0 leads to a stimulus with uniform flanks.
    mean_lum           Integer         511         The mean luminance of the stimulus, i.e. the value outside of the ramp area.
    pngfile            String          None        The path to the pre-made PNG file if one wishes to display a pre-made stimuli
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    ================ ================= =========== ========================================================================================================================
 
     **References (from TU Berlin)**:
@@ -381,8 +377,7 @@ class Todorovic(BaseMonitorTesting):
     TU Berlin notes:
         Create a checkerboard illusion by appropriately aligning COC stimuli, in the way demonstrated by Todorovic (1987).
 
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
+
 
     This class inherits from BaseMonitorTesting.
 
@@ -404,7 +399,7 @@ class Todorovic(BaseMonitorTesting):
    mean_lum           Integer         511         The mean luminance of the stimulus, i.e. the value outside of the ramp area. Used for Cornsweet stimulus.
    vert_rep           Integer         3           The number of vertical repetitions (i.e. rows) in the Todorovic checkerboard.
    horz_rep           Integer         5           The number of horizontal repetitions (i.e. columns) in the Todorovic checkerboard.
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    ================ ================= =========== =====================================================================================================================================
 
     **References (from TU Berlin)**:
@@ -413,6 +408,7 @@ class Todorovic(BaseMonitorTesting):
     """
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, visualdegrees=None, ppd=128, contrast=1, ramp_width=3, exponent=2.75, mean_lum=511, vert_rep=3, horz_rep=5, pngfile=None, encode=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
+        self.grayvals=[mean_lum, exponent]
         if pngfile==None:
             if visualdegrees==None:
                 visualdegrees=[]
@@ -446,8 +442,7 @@ class WhiteIllusion(BaseMonitorTesting):
 
     Produces both kind="bmcc": in the style used by Blakeslee and McCourt (1999), and kind="gil": in the style used by Gilchrist (2006, p. 281).
 
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
+
 
     This class inherits from BaseMonitorTesting.
 
@@ -469,7 +464,7 @@ class WhiteIllusion(BaseMonitorTesting):
    mean_lum           Integer         511         The mean luminance of the stimulus, i.e. the value outside of the ramp area.
    start              String          "high"      Specifies if the wave starts with a high or low value, can be "high" or "low".
    pngfile            String          None        The path to the pre-made PNG file if one wishes to display a pre-made stimuli
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    ================ ================= =========== ========================================================================================================================
 
     **References (from TU Berlin)**:
@@ -481,6 +476,7 @@ class WhiteIllusion(BaseMonitorTesting):
    """
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, kind="bmcc", visualdegrees=None, ppd=128, contrast=1, frequency=5, mean_lum=511, start='high', pngfile=None, encode=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
+        self.grayvals=[mean_lum, contrast]
         if pngfile==None:
             if visualdegrees==None:
                 visualdegrees=[]
@@ -517,8 +513,7 @@ class SquareWave(BaseMonitorTesting):
     TU Berlin notes:
         Create a horizontal square wave of given spatial frequency.
 
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
+
 
     This class inherits from BaseMonitorTesting.
 
@@ -540,12 +535,13 @@ class SquareWave(BaseMonitorTesting):
    mean_lum           Integer         511         The mean luminance of the stimulus, i.e. the value outside of the ramp area.
    start              String          "high"      Specifies if the wave starts with a high or low value, can be "high" or "low".
    pngfile            String          None        The path to the pre-made PNG file if one wishes to display a pre-made stimuli
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    ================ ================= =========== ===============================================================================================================================================================================================================================================================
 
    """
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, visualdegrees=None, ppd=512, contrast=1, frequency=5, mean_lum=511, period='ignore', start='high', pngfile=None, encode=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
+        self.grayvals=[mean_lum, contrast]
         if pngfile==None:
             if visualdegrees==None:
                 visualdegrees=[]
@@ -577,8 +573,7 @@ class Lines(BaseMonitorTesting):
 
     .. warning::
         Note one must manually set the monitor size argument to (2048, 1536) if producing stimuli for the black and white monitor.
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
+
 
     This class inherits from BaseMonitorTesting.
 
@@ -593,7 +588,7 @@ class Lines(BaseMonitorTesting):
    prefix             String          "data"      This is the prefix for the filename that the data will be written to. Writes like prefix+date_time.
    waittime           Float           0.01        This is the waiting time between iterations of the runningLoop. So effectively sets the framerate.
    pngfiles           List(Strings)   None        The paths to the pre-made PNG files if one wishes to display pre-made stimuli. If None then generates new stimuli files.
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    monitorsize        List(Integers)  None        List of monitor size values [X,Y] to produce stimuli for. If None then determines values from defaults.
    lowgray            Integer         0           The gray value of the lines.
    highgray           Integer         1023        The gray value of the space between the lines.
@@ -696,8 +691,7 @@ class SinGrating(BaseMonitorTesting):
 
     .. warning::
         Note one must manually set the monitor size argument to (2048, 1536) if producing stimuli for the black and white monitor.
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
+
 
     This class inherits from BaseMonitorTesting.
 
@@ -712,7 +706,7 @@ class SinGrating(BaseMonitorTesting):
    prefix             String          "data"      This is the prefix for the filename that the data will be written to. Writes like prefix+date_time.
    waittime           Float           0.01        This is the waiting time between iterations of the runningLoop. So effectively sets the framerate.
    pngfiles           List(Strings)   None        The paths to the pre-made PNG files if one wishes to display pre-made stimuli. If None then generates new stimuli files.
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    monitorsize        List(Integers)  None        List of monitor size values [X,Y] to produce stimuli for. If None then determines values from defaults.
    gratingheight      Integer         20          Height of the grating from the centre, in pixels.
    sinamplitude       Integer         512         The middle gray value of the sin grating.
@@ -724,7 +718,7 @@ class SinGrating(BaseMonitorTesting):
 
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, pngfiles=None, encode=True, monitorsize=None, gratingheight=20, sinamplitude=512, sinoffset=512):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
-
+        self.grayvals=[sinamplitude, sinoffset]
         self.sinpngs=[]
         if pngfiles==None:
             if monitorsize==None:
@@ -796,9 +790,6 @@ class PatchBrightnessTest(BaseMonitorTesting):
     '''
     Compare luminance of big patch and small patch, on CRT big patch should always be less bright. Can use up and down arrow keys to modify the size of the patch whilst running.
 
-    .. warning::
-        The unencoded (encode=False) option does not yet work, this is also true for the other stimuli.
-
     This class inherits from BaseMonitorTesting.
 
    **Arguments for initialisation**:
@@ -811,22 +802,23 @@ class PatchBrightnessTest(BaseMonitorTesting):
    calibrate          Boolean         True        If True then will ask to calibrate the EyeOne.
    prefix             String          "data"      This is the prefix for the filename that the data will be written to. Writes like prefix+date_time.
    waittime           Float           0.01        This is the waiting time between iterations of the runningLoop. So effectively sets the framerate.
-   encode             Boolean         True        Sets whether to encode the black and white monitor or not. False case unimplemented as of yet.
+   encode             Boolean         True        Sets whether to encode the black and white monitor or not.
    monitorsize        List(Integers)  None        List of monitor size values [X,Y] to present the stimuli on. If None then determines values from defaults.
    patchsize          Float           0.5         The initial size of the central patch in normalised units.
    bggray             Integer         512         The fixed value of the background gray.
-   patchgrey          Integer         800         The fixed value of the patch gray.
+   patchgray          Integer         800         The fixed value of the patch gray.
    patchstep          Float           0.1         The amount by which one button press Up or Down changes the central patch size.
    ================ ================= =========== ===============================================================================================================================================================================================================================================================
 
 
      '''
 
-    def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, encode=True, monitorsize=None, patchsize=0.5, bggray=511, patchgrey=800, patchstep=0.1):
+    def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, encode=True, monitorsize=None, patchsize=0.5, bggray=511, patchgray=800, patchstep=0.1):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
+        self.grayvals=[patchgray, bggray]
         self.patchsize=patchsize
         self.bggray=bggray
-        self.patchgrey=patchgrey
+        self.patchgray=patchgray
         self.patchstep=patchstep
     def drawFunction(self):
         for thiskey in self.keys:
@@ -841,6 +833,6 @@ class PatchBrightnessTest(BaseMonitorTesting):
 
     def run(self):
         self.window = visual.Window(self.monitorsize, monitor="mymon", color=eizoGS320.encode_color(0,0), screen=self.monitornum, colorSpace="rgb255", allowGUI=False, units="pix")
-        self.patch=visual.PatchStim(self.window, tex=None, units='norm', pos=(0, 0), size=self.patchsize, colorSpace=self.window.colorSpace, color=eizoGS320.encode_color(self.patchgrey, self.patchgrey))
+        self.patch=visual.PatchStim(self.window, tex=None, units='norm', pos=(0, 0), size=self.patchsize, colorSpace=self.window.colorSpace, color=eizoGS320.encode_color(self.patchgray, self.patchgray))
         self.runningLoop()
 
