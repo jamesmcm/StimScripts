@@ -122,7 +122,7 @@ Present a black and white grid on the stimulus and transpose it.
 
 * DONE Run measurements for line switching
 * TODO Measure for varying size of patch and brightness
-* TODO Fix typos in documentation
+* DONE Fix typos in documentation
 * DONE Document new scripts
 * DONE Check Hysteresis i.e. go up and down on already color plot - should get no difference
 *** No hysteresis problems observed - hgraph1.eps
@@ -157,12 +157,12 @@ wants them to occur.
 ** MonitorTestingSinwave - says how sin wave should be created
 ** Take data files argument - if no data then create stimuli
 ** DONE Write generic looping function - in a way such that threads may be used?
-* TODO Measure x/y lines with new factor of 2 division - do 1 pixel and measure at monitor, then do 8, 32 pixels - take 30 measurements
-* TODO Analyse gamma fitting data
+* DONE Measure x/y lines with new factor of 2 division - do 1 pixel and measure at monitor, then do 8, 32 pixels - take 30 measurements
+* DONE Analyse gamma fitting data
 
-Printer 248 HP
+  Printer 248 HP
 * DONE Measure 10 points throughout colour shades from 10 to 850, with 10 recalibrations, 30 times each
-* TODO Fix producing unencoded mondrian
+* DONE Fix producing unencoded mondrian
 * TODO FIx pixel rounding errors - on Cornsweet
 * TODO Add greyvals for stimuli so measurement works
 * DONE Fix bug with monitorsize -if using eizo want to produce stimuli for 2048 but project at 1024 - just override size

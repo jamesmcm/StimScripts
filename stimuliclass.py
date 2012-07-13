@@ -1,5 +1,8 @@
 from achrolab.printing import CalibDataFile
-from achrolab.eyeone import eyeone, EyeOneConstants
+try:
+    from achrolab.eyeone import eyeone, EyeOneConstants
+except:
+    from achrolab.eyeone import EyeOne, EyeOneConstants
 from ctypes import c_float
 from contextlib import closing
 from psychopy import visual
@@ -232,7 +235,7 @@ class Mondrian(BaseMonitorTesting):
 
     TU Berlin notes:
         Create a mondrian on which the difference between desired color distribution and actual color distribution is smaller than some accuracy value. If no randomly created mondrian fulfills this criterion before some cycle count is reached, the best mondrian generated so far is returned.
-    
+
     .. warning::
         Note one must manually set the image size to (2048, 1536) if producing stimuli for the black and white monitor.
 
@@ -281,10 +284,13 @@ class Mondrian(BaseMonitorTesting):
             if encode==True:
                 nparray=eizoGS320.encode_np_array(nparray)
             else:
-                #This is broken, must encode for now
-                nparray=(1.0/4.0)*nparray
-                nparray=nparray.view('uint8')[:,::4]
+                (N, M) = np.shape(nparray)
+                newarray = np.zeros((N, M, 3), dtype=np.uint8)
+                newarray[:,:,0]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,1]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,2]=np.uint8(nparray[:,:]/4)
                 #nparray.dtype = np.uint8
+                nparray=newarray
             pil_im = Image.fromarray(nparray)
             self.pngfile="mondrian"+time.strftime("%Y%m%d_%H%M")+".png"
             pil_im.save(self.pngfile)
@@ -348,6 +354,14 @@ class Cornsweet(BaseMonitorTesting):
             nparray=cornsweet(visualdegrees, ppd, contrast, ramp_width, exponent, mean_lum)
             if encode==True:
                 nparray=eizoGS320.encode_np_array(nparray)
+            else:
+                (N, M) = np.shape(nparray)
+                newarray = np.zeros((N, M, 3), dtype=np.uint8)
+                newarray[:,:,0]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,1]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,2]=np.uint8(nparray[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparray=newarray
             pil_im = Image.fromarray(nparray)
             self.pngfile="cornsweet"+time.strftime("%Y%m%d_%H%M")+".png"
             pil_im.save(self.pngfile)
@@ -408,6 +422,14 @@ class Todorovic(BaseMonitorTesting):
             nparray=todorovic(nparray, vert_rep, horz_rep)
             if encode==True:
                 nparray=eizoGS320.encode_np_array(nparray)
+            else:
+                (N, M) = np.shape(nparray)
+                newarray = np.zeros((N, M, 3), dtype=np.uint8)
+                newarray[:,:,0]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,1]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,2]=np.uint8(nparray[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparray=newarray
             pil_im = Image.fromarray(nparray)
             self.pngfile="todorovic"+time.strftime("%Y%m%d_%H%M")+".png"
             pil_im.save(self.pngfile)
@@ -471,6 +493,14 @@ class WhiteIllusion(BaseMonitorTesting):
 
             if encode==True:
                 nparray=eizoGS320.encode_np_array(nparray)
+            else:
+                (N, M) = np.shape(nparray)
+                newarray = np.zeros((N, M, 3), dtype=np.uint8)
+                newarray[:,:,0]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,1]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,2]=np.uint8(nparray[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparray=newarray
             pil_im = Image.fromarray(nparray)
             self.pngfile="whiteillusion"+kind+time.strftime("%Y%m%d_%H%M")+".png"
             pil_im.save(self.pngfile)
@@ -524,6 +554,14 @@ class SquareWave(BaseMonitorTesting):
             nparray=square_wave(visualdegrees, ppd, contrast, frequency, mean_lum, period=period, start=start)
             if encode==True:
                 nparray=eizoGS320.encode_np_array(nparray)
+            else:
+                (N, M) = np.shape(nparray)
+                newarray = np.zeros((N, M, 3), dtype=np.uint8)
+                newarray[:,:,0]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,1]=np.uint8(nparray[:,:]/4)
+                newarray[:,:,2]=np.uint8(nparray[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparray=newarray
             pil_im = Image.fromarray(nparray)
             self.pngfile="squarewave"+time.strftime("%Y%m%d_%H%M")+".png"
             pil_im.save(self.pngfile)
@@ -599,6 +637,21 @@ class Lines(BaseMonitorTesting):
             if encode==True:
                 nparrayx=eizoGS320.encode_np_array(nparrayx)
                 nparrayy=eizoGS320.encode_np_array(nparrayy)
+            else:
+                (N, M) = np.shape(nparrayx)
+                newarrayx = np.zeros((N, M, 3), dtype=np.uint8)
+                newarrayx[:,:,0]=np.uint8(nparrayx[:,:]/4)
+                newarrayx[:,:,1]=np.uint8(nparrayx[:,:]/4)
+                newarrayx[:,:,2]=np.uint8(nparrayx[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparrayx=newarrayx
+                (N, M) = np.shape(nparrayy)
+                newarrayy = np.zeros((N, M, 3), dtype=np.uint8)
+                newarrayy[:,:,0]=np.uint8(nparrayy[:,:]/4)
+                newarrayy[:,:,1]=np.uint8(nparrayy[:,:]/4)
+                newarrayy[:,:,2]=np.uint8(nparrayy[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparrayy=newarrayy
 
             pil_imx = Image.fromarray(nparrayx)
             pil_imy = Image.fromarray(nparrayy)
@@ -692,6 +745,23 @@ class SinGrating(BaseMonitorTesting):
             if encode==True:
                 nparray0=eizoGS320.encode_np_array(nparray0)
                 nparray180=eizoGS320.encode_np_array(nparray180)
+
+            else:
+                (N, M) = np.shape(nparray0)
+                newarray0 = np.zeros((N, M, 3), dtype=np.uint8)
+                newarray0[:,:,0]=np.uint8(nparray0[:,:]/4)
+                newarray0[:,:,1]=np.uint8(nparray0[:,:]/4)
+                newarray0[:,:,2]=np.uint8(nparray0[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparray0=newarray0
+                (N, M) = np.shape(nparray180)
+                newarray180 = np.zeros((N, M, 3), dtype=np.uint8)
+                newarray180[:,:,0]=np.uint8(nparray180[:,:]/4)
+                newarray180[:,:,1]=np.uint8(nparray180[:,:]/4)
+                newarray180[:,:,2]=np.uint8(nparray180[:,:]/4)
+                #nparray.dtype = np.uint8
+                nparray180=newarray180
+
 
             pil_im0 = Image.fromarray(nparray0)
             pil_im180 = Image.fromarray(nparray180)
