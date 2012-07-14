@@ -278,6 +278,7 @@ class Mondrian(BaseMonitorTesting):
         if (pngfile==None) or (pngfile==""):
             colorlist=range(lowgray, highgray, step)
             nparray=mondrian.create_mondrian(mondriansize, meanlength, colorlist, weights, accuracy, max_cycles, write)
+            self.mondrianarray=nparray
             if encode==True:
                 nparray=eizoGS320.encode_np_array(nparray)
             else:
@@ -292,7 +293,7 @@ class Mondrian(BaseMonitorTesting):
             self.pngfile="mondrian"+time.strftime("%Y%m%d_%H%M")+".png"
             pil_im.save(self.pngfile)
 
-
+            
         else:
             self.pngfile=pngfile
 

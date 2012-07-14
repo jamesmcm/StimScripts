@@ -171,4 +171,8 @@ wants them to occur.
 * TODO Document measurements - lines + problem, hysteresis loop, random gamma measurements, gamma measurements against size of patch, document output gray values, document problem with threading
 * TODO Fix broken experiment2, memory problem with PNGs?
 * TODO Mondrian and transparent infield - use transparency equation, Metelli
+** Generate Mondrian as an array of the stimulus size, then make big numpy array set to BG color, then set a subset of this array to equal the mondrian array, then apply the transparency
+* TODO Fix for Python3 - install at work
 
+
+plot2d(((1.0/(16.0 * np.sqrt(2*np.pi))) * %e^(-0.5*(((x-511)/16)^2))), [x, 0, 1023]);
