@@ -176,3 +176,8 @@ wants them to occur.
 
 
 plot2d(((1.0/(16.0 * np.sqrt(2*np.pi))) * %e^(-0.5*(((x-511)/16)^2))), [x, 0, 1023]);
+* TODO Repeat hysteresis measurement in one calibration
+* TODO Modify lines.py to test for memory leak - tryr just repeatedly switching between two stimuli see if crashes at 2000
+* TODO Maybe overwriting stimuli object each time is okay
+* TODO Produce hundreds of articulated sample images with script to test crashing
+* TODO Implement transparency function

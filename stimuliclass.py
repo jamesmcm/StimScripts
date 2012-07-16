@@ -272,7 +272,9 @@ class Mondrian(BaseMonitorTesting):
         if imagesize==None:
             mondriansize=self.monitorsize
         else:
-            mondriansize=imagesize
+            #mondriansize=imagesize
+            mondriansize = []
+            mondriansize.extend(imagesize)
         mondriansize.reverse()
         #Create mondrian if no PNG file provided
         if (pngfile==None) or (pngfile==""):
@@ -293,7 +295,6 @@ class Mondrian(BaseMonitorTesting):
             self.pngfile="mondrian"+time.strftime("%Y%m%d_%H%M")+".png"
             pil_im.save(self.pngfile)
 
-            
         else:
             self.pngfile=pngfile
 
@@ -603,7 +604,9 @@ class Lines(BaseMonitorTesting):
         self.grayvals=[highgray, lowgray]
         if pngfiles==None:
             if monitorsize==None:
-                monitorsize=self.monitorsize
+                #monitorsize=self.monitorsize
+                monitorsize = []
+                monitorsize.extend(self.monitorsize)
             monitorsize.reverse()
             nparrayx=np.ones(monitorsize, dtype=np.uint16)
             nparrayx*=512
@@ -663,10 +666,10 @@ class Lines(BaseMonitorTesting):
     def drawFunction(self):
             if self.n%2 == 0:
                 self.linesx.draw()
-                print "Horizontal lines drawn"
+                print("Horizontal lines drawn")
             else:
                 self.linesy.draw()
-                print "Vertical lines drawn"
+                print("Vertical lines drawn")
             self.n+=1
             self.n = self.n % 2
             self.window.flip()
@@ -723,7 +726,9 @@ class SinGrating(BaseMonitorTesting):
         self.sinpngs=[]
         if pngfiles==None:
             if monitorsize==None:
-                monitorsize=self.monitorsize
+                #monitorsize=self.monitorsize
+                monitorsize = []
+                monitorsize.extend(self.monitorsize)
             monitorsize.reverse()
             nparray0=np.ones(monitorsize, dtype=np.uint16)
             nparray0*=512
@@ -772,10 +777,10 @@ class SinGrating(BaseMonitorTesting):
     def drawFunction(self):
         if self.n%2 == 0:
             self.sin0.draw()
-            print "0 phase sin grating drawn"
+            print("0 phase sin grating drawn")
         else:
             self.sin180.draw()
-            print "180 phase sin grating drawn"
+            print("180 phase sin grating drawn")
         self.n+=1
         self.n = self.n % 2
         self.window.flip()
