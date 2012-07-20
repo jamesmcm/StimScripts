@@ -262,11 +262,12 @@ class Mondrian(BaseMonitorTesting):
    pngfile            String          None        The path to the pre-made PNG file if one wishes to display a pre-made Mondrian.
    imagesize          List(2*Integer) None        The size of the Mondrian to be generated, as a 2 element list [X,Y]. If None uses defined monitor size.
    encode             Boolean         True        Sets whether to encode the black and white monitor or not.
+   saveimage          Boolean         True        Whether to save an image of the generated Mondrian. Set to false if generating to inset in another image.
    ================ ================= =========== ========================================================================================================================
 
     '''
 
-    def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, highgray=1023, lowgray=0, step=1, meanlength=5, weights=None, accuracy=0.05, max_cycles=1000, write=False, pngfile=None, imagesize=None, encode=True):
+    def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, highgray=1023, lowgray=0, step=1, meanlength=5, weights=None, accuracy=0.05, max_cycles=1000, write=False, pngfile=None, imagesize=None, encode=True, saveimage=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
         self.grayvals=[highgray, lowgray]
         if imagesize==None:
@@ -281,19 +282,20 @@ class Mondrian(BaseMonitorTesting):
             colorlist=range(lowgray, highgray, step)
             nparray=mondrian.create_mondrian(mondriansize, meanlength, colorlist, weights, accuracy, max_cycles, write)
             self.mondrianarray=nparray
-            if encode==True:
-                nparray=eizoGS320.encode_np_array(nparray)
-            else:
-                (N, M) = np.shape(nparray)
-                newarray = np.zeros((N, M, 3), dtype=np.uint8)
-                newarray[:,:,0]=np.uint8(nparray[:,:]/4)
-                newarray[:,:,1]=np.uint8(nparray[:,:]/4)
-                newarray[:,:,2]=np.uint8(nparray[:,:]/4)
-                #nparray.dtype = np.uint8
-                nparray=newarray
-            pil_im = Image.fromarray(nparray)
-            self.pngfile="mondrian"+time.strftime("%Y%m%d_%H%M")+".png"
-            pil_im.save(self.pngfile)
+            if saveimage==True:
+                if encode==True:
+                    nparray=eizoGS320.encode_np_array(nparray)
+                else:
+                    (N, M) = np.shape(nparray)
+                    newarray = np.zeros((N, M, 3), dtype=np.uint8)
+                    newarray[:,:,0]=np.uint8(nparray[:,:]/4)
+                    newarray[:,:,1]=np.uint8(nparray[:,:]/4)
+                    newarray[:,:,2]=np.uint8(nparray[:,:]/4)
+                    #nparray.dtype = np.uint8
+                    nparray=newarray
+                    pil_im = Image.fromarray(nparray)
+                    self.pngfile="mondrian"+time.strftime("%Y%m%d_%H%M")+".png"
+                    pil_im.save(self.pngfile)
 
         else:
             self.pngfile=pngfile

@@ -10,7 +10,7 @@ Simple script to present a chosen stimuli from PNG on to the screen. Change stim
 
 if __name__=='__main__':
     #Oft-changed constants here:
-    usingeizo=False
+    usingeizo=True
     measuring=False #Measuring unimplemented here, spectrometer too slow
     waittime=1 #Perhaps change this to more accurate frame-basis
     calibrate = True
@@ -84,7 +84,7 @@ if __name__=='__main__':
 
     #bgstim=visual.PatchStim(mywin, tex=None, units='norm', pos=(0, 0), size=2, colorSpace=mywin.colorSpace, color=eizoGS320.encode_color(0, 0))
     #centralstim=visual.PatchStim(mywin, tex=None, units='norm', pos=(0, 0), size=patchsize, colorSpace=mywin.colorSpace, color=eizoGS320.encode_color(centralstimgray, centralstimgray))
-    phase0=visual.SimpleImageStim(mywin, image=imagename, units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='phase0', autoLog=True)
+    phase0=visual.SimpleImageStim(mywin, image="mondriantest0.png", units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='phase0', autoLog=True)
 
 
     #Allow change stimulus size, etc. easily - use globals or arguments
@@ -108,7 +108,7 @@ if __name__=='__main__':
 
     running=True
     #freq=0.015 #This affects how big the steps are we sample in the sin function
-
+    j=0
     with closing(CalibDataFile(prefix=prefix)) as datafile:
         while running:
             keys=event.getKeys()
@@ -116,6 +116,10 @@ if __name__=='__main__':
                 if thiskey in ['q', 'escape']:
                     running=False
                     break
+            if j>1023:
+                j=0
+            phase0=visual.SimpleImageStim(mywin, image="mondriantest"+str(j)+".png", units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='phase0', autoLog=True)
+            j+=1
             phase0.draw()
             mywin.flip()
             if measuring==True:
