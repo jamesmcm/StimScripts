@@ -5,17 +5,25 @@ import time
 import eizoGS320
 
 k=0
-while k<1024:
+timeset=time.strftime("%Y%m%d_%H%M", time.localtime())
+fileout=open("sessionfile"+str(timeset)+".txt", "w")
+while k<5:
     monitorsize=[2048, 1536]
     mondheight=monitorsize[1]/2.0
     mondwidth=monitorsize[0]/4.0
-    bggray=511
+    bggray=621
 
     leftweightsvar=256.0
-    leftweightsmean=k
+    leftweightsmean=512+k
 
     rightweightsvar=256.0
-    rightweightsmean=1023-k
+    rightweightsmean=512+k
+
+    leftgrayminus=400
+    rightgrayminus=400
+
+    seedleft=1
+    seedright=1
 
     leftweights=[]
     for i in range(1023):
@@ -33,17 +41,17 @@ while k<1024:
     bigarray=bggray*bigarray
 
     #Draw Mondrian surrounds
-    mymondleft=Mondrian(usingeizo=False, imagesize=[mondwidth, mondheight], encode=False, weights=leftweights, saveimage=False)
+    mymondleft=Mondrian(usingeizo=False, imagesize=[mondwidth, mondheight], encode=False, weights=leftweights, saveimage=False, seed=seedleft)
 
     bigarray[(monitorsize[1]/2.0)-mondheight/2.0:(monitorsize[1]/2.0)+mondheight/2.0,(monitorsize[0]/4.0)-mondwidth/2.0:(monitorsize[0]/4.0)+mondwidth/2.0] = mymondleft.mondrianarray
 
-    mymondright=Mondrian(usingeizo=False, imagesize=[mondwidth, mondheight], encode=False, weights=rightweights, saveimage=False)
+    mymondright=Mondrian(usingeizo=False, imagesize=[mondwidth, mondheight], encode=False, weights=rightweights, saveimage=False, seed=seedright)
 
     bigarray[(monitorsize[1]/2.0)-mondheight/2.0:(monitorsize[1]/2.0)+mondheight/2.0,(3*monitorsize[0]/4.0)-mondwidth/2.0:(3*monitorsize[0]/4.0)+mondwidth/2.0] = mymondright.mondrianarray
 
     #Overlay transparent insets
-    bigarray[(monitorsize[1]/2.0)-(mondheight/4.0):(monitorsize[1]/2.0)+(mondheight/4.0),(3*monitorsize[0]/4.0)-(mondwidth/4.0):(3*monitorsize[0]/4.0)+(mondwidth/4.0)] -= 400
-    bigarray[(monitorsize[1]/2.0)-(mondheight/4.0):(monitorsize[1]/2.0)+(mondheight/4.0),(monitorsize[0]/4.0)-(mondwidth/4.0):(monitorsize[0]/4.0)+(mondwidth/4.0)] -= 400
+    bigarray[(monitorsize[1]/2.0)-(mondheight/4.0):(monitorsize[1]/2.0)+(mondheight/4.0),(3*monitorsize[0]/4.0)-(mondwidth/4.0):(3*monitorsize[0]/4.0)+(mondwidth/4.0)] -= rightgrayminus
+    bigarray[(monitorsize[1]/2.0)-(mondheight/4.0):(monitorsize[1]/2.0)+(mondheight/4.0),(monitorsize[0]/4.0)-(mondwidth/4.0):(monitorsize[0]/4.0)+(mondwidth/4.0)] -= leftgrayminus
 
 
     bigarray[bigarray>1023]=1023
@@ -56,6 +64,10 @@ while k<1024:
     # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
     newarray=eizoGS320.encode_np_array(bigarray)
     pil_im = Image.fromarray(newarray)
-    pngfile="mondriantest"+str(k)+".png"
+    pngfile=str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(bggray)+".png"
+
+    fileout.write("trial(['"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(bggray)+".png', "+str(leftweightsmean)+","+str(leftweightsvar)+","+str(leftgrayminus)+","+str(rightweightsmean)+","+str(rightweightsvar)+","+str(rightgrayminus)+","+str(bggray)+"])\n")
     pil_im.save(pngfile)
     k+=1
+
+fileout.close()

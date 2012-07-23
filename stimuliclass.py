@@ -267,7 +267,7 @@ class Mondrian(BaseMonitorTesting):
 
     '''
 
-    def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, highgray=1023, lowgray=0, step=1, meanlength=5, weights=None, accuracy=0.05, max_cycles=1000, write=False, pngfile=None, imagesize=None, encode=True, saveimage=True):
+    def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, highgray=1023, lowgray=0, step=1, meanlength=5, weights=None, accuracy=0.05, max_cycles=1000, write=False, seed=1, pngfile=None, imagesize=None, encode=True, saveimage=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
         self.grayvals=[highgray, lowgray]
         if imagesize==None:
@@ -280,7 +280,7 @@ class Mondrian(BaseMonitorTesting):
         #Create mondrian if no PNG file provided
         if (pngfile==None) or (pngfile==""):
             colorlist=range(lowgray, highgray, step)
-            nparray=mondrian.create_mondrian(mondriansize, meanlength, colorlist, weights, accuracy, max_cycles, write)
+            nparray=mondrian.create_mondrian(mondriansize, meanlength, colorlist, weights, accuracy, max_cycles, write, seed)
             self.mondrianarray=nparray
             if saveimage==True:
                 if encode==True:

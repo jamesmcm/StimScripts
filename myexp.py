@@ -69,16 +69,17 @@ def trial(data, same, outputFile):
                 rtTime = trialClock.getTime() - exp_time
                 key = 'r'
 
-        # time = trialClock.getTime()
-        # if (time > 0.5):
-        #     cross.draw()
-        #     mywin.flip()
+        time = trialClock.getTime()
+        if (time > 0.5):
+            stim.draw()
+            cross.draw()
+            mywin.flip()
             # (nicht sehr effizient, da mywin kontinuierlich upgedatet wird
             # bis zur Reaktion -- bessere Loesung?)
 
         event.clearEvents() # must clear other events (like mouse movements)
         #    dataFile.write('%5.4s %5.4s %5.4s %5.4s %5.4s %5.4s %5.4s %7.4f %5.4s\n' %(config[0][0], config[0][1], config[0][2], config[1][0], config[1][1], config[1][2], thisResp, rtTime, key))
-        outputFile.writeDataTXT(stimuliName=data[0], leftmean=data[1], leftvar=data[2], leftgrayplus=data[3], rightmean=data[5], rightvar=data[6], rightgrayplus=data[7], bg=bg, voltages=voltages, rtTime=rtTime, key=key, thisResp=thisResp, delimiter="\t")
+    outputFile.writeDataTXT(stimuliName=data[0], leftmean=data[1], leftvar=data[2], leftgrayplus=data[3], rightmean=data[4], rightvar=data[5], rightgrayplus=data[6], bg=data[7], voltages=voltages, rtTime=rtTime, key=key, thisResp=thisResp, delimiter="\t")
     # show fixation cross the whole time
     cross.draw()
     mywin.flip()
@@ -100,16 +101,16 @@ def load_instructions(inputfile):
             run = False
 
         event.clearEvents()
-            
+
         im_draw.draw()
         mywin.flip()
-        
+
     mywin.flip()
     core.wait(0.5)
 
 def new_block(input):
     im = Image.new("RGB", (2048, 500), bg)
-    
+
     font = ImageFont.truetype("arial.ttf", 50)
     draw = ImageDraw.Draw(im)
     draw.text((580, 100), input, fill=(0,0,0), font=font)
@@ -118,7 +119,7 @@ def new_block(input):
     im.save("instructions/new_block.png")
 
     eizoGS320.convert_to_eizo_picture("instructions/new_block.png", "instructions/block_eizo.png")
-    
+
     im_draw = visual.SimpleImageStim(mywin, "instructions/block_eizo.png", units="pix")
 
     event.clearEvents()
@@ -134,10 +135,10 @@ def new_block(input):
             run = False
 
         event.clearEvents()
-            
+
         im_draw.draw()
         mywin.flip()
-        
+
     mywin.flip()
     core.wait(0.5)
 
@@ -163,7 +164,7 @@ else:
 # create window, mouse and clock
 
 mywin = visual.Window([1024,1536], monitor='mymon', color=bg,
-        allowGUI=False, screen=1, colorSpace='rgb255')
+        allowGUI=False, screen=0, colorSpace='rgb255')
 mymouse = event.Mouse(win=mywin)
 
 # set tubes
