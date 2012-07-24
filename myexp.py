@@ -18,14 +18,15 @@ import Image, ImageDraw, ImageFont
 import eizoGS320
 
 
-
+stimuliflashtime=0.5
 voltages = (1162, 1755, 1614)
-bg = (155,155,17)       # 621
+bg = (155,155,17)       # 621, this doesn't actually do anything
 
 
 def trial(data, same, outputFile):
     # fixation cross
     cross = visual.SimpleImageStim(mywin, "cross.png", units="pix")
+    shown=False
 
     cross.draw()
     #get filenames from data
@@ -70,16 +71,18 @@ def trial(data, same, outputFile):
                 key = 'r'
 
         time = trialClock.getTime()
-        if (time > 0.5):
-            stim.draw()
+        shown=True
+        if (time > stimuliflashtime and shown==True):
+            #stim.draw()
             cross.draw()
             mywin.flip()
+            shown=False
             # (nicht sehr effizient, da mywin kontinuierlich upgedatet wird
             # bis zur Reaktion -- bessere Loesung?)
 
         event.clearEvents() # must clear other events (like mouse movements)
         #    dataFile.write('%5.4s %5.4s %5.4s %5.4s %5.4s %5.4s %5.4s %7.4f %5.4s\n' %(config[0][0], config[0][1], config[0][2], config[1][0], config[1][1], config[1][2], thisResp, rtTime, key))
-    outputFile.writeDataTXT(stimuliName=data[0], leftmean=data[1], leftvar=data[2], leftgrayplus=data[3], rightmean=data[4], rightvar=data[5], rightgrayplus=data[6], bg=data[7], voltages=voltages, rtTime=rtTime, key=key, thisResp=thisResp, delimiter="\t")
+    outputFile.writeDataTXT(stimuliName=data[0], leftmean=data[1], leftvar=data[2], leftgrayplus=data[3], rightmean=data[4], rightvar=data[5], rightgrayplus=data[6], bg=data[7], leftseed=data[8], rightseed=data[9], voltages=voltages, rtTime=rtTime, key=key, thisResp=thisResp, delimiter="\t")
     # show fixation cross the whole time
     cross.draw()
     mywin.flip()
@@ -106,7 +109,6 @@ def load_instructions(inputfile):
         mywin.flip()
 
     mywin.flip()
-    core.wait(0.5)
 
 def new_block(input):
     im = Image.new("RGB", (2048, 500), bg)
@@ -140,7 +142,7 @@ def new_block(input):
         mywin.flip()
 
     mywin.flip()
-    core.wait(0.5)
+    core.wait(0.1)
 
 
 
