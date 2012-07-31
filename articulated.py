@@ -3,11 +3,14 @@ import numpy as np
 import Image
 import time
 import eizoGS320
+import sys
 
+sys.path.append("../achrolabutils/")
 k=0
 stimulilist=[(376, 456), (416, 496), (456, 488)]
 timeset=time.strftime("%Y%m%d_%H%M", time.localtime())
-fileout=open("sessionfile"+str(timeset)+".txt", "w")
+fileoutac=open("stimulilistac"+str(timeset)+".txt", "w")
+fileoutnc=open("stimulilistnc"+str(timeset)+".txt", "w")
 i=0
 j=0
 while k<3:
@@ -28,6 +31,9 @@ while k<3:
         #rightweightsmean=512+k
         rightweightsmean=stimulilist[j][1]
 
+        leftpatchgray=stimulilist[k][0]
+        rightpatchgray=stimulilist[j][0]        
+        
         leftgrayminus=stimulilist[k][1]-stimulilist[k][0]
         rightgrayminus=stimulilist[j][1]-stimulilist[j][0]
 
@@ -59,8 +65,8 @@ while k<3:
         bigarray[(monitorsize[1]/2.0)-surroundsize/2.0:(monitorsize[1]/2.0)+surroundsize/2.0,(monitorsize[0]/2.0)+separation/2.0:(monitorsize[0]/2.0)+surroundsize+separation/2.0] = mymondright.mondrianarray
 
         #Overlay transparent insets
-        bigarray[(monitorsize[1]/2.0)-surroundsize/2.0+infieldsize/2.0:(monitorsize[1]/2.0)+surroundsize/2.0-infieldsize/2.0,(monitorsize[0]/2.0)-surroundsize-separation/2.0+infieldsize/2.0:(monitorsize[0]/2.0)-separation/2.0-infieldsize/2.0] -= leftgrayminus
-        bigarray[(monitorsize[1]/2.0)-surroundsize/2.0+infieldsize/2.0:(monitorsize[1]/2.0)+surroundsize/2.0-infieldsize/2.0,(monitorsize[0]/2.0)+surroundsize+separation/2.0-infieldsize/2.0:(monitorsize[0]/2.0)+separation/2.0+infieldsize/2.0] -= rightgrayminus
+        bigarray[(monitorsize[1]/2.0)-(infieldsize/2.0):(monitorsize[1]/2.0)+(infieldsize/2.0),(monitorsize[0]/2.0)-(surroundsize/2.0)-(separation/2.0)-(infieldsize/2.0):(monitorsize[0]/2.0)-(separation/2.0)-(surroundsize/2.0)+(infieldsize/2.0)] -= leftgrayminus
+        bigarray[(monitorsize[1]/2.0)-(infieldsize/2.0):(monitorsize[1]/2.0)+(infieldsize/2.0),(monitorsize[0]/2.0)+(separation/2.0)+(surroundsize/2.0)-(infieldsize/2.0):(monitorsize[0]/2.0)+(surroundsize/2.0)+(separation/2.0)+(infieldsize/2.0)] -= leftgrayminus
 
         bigarray[bigarray>1023]=1023
         bigarray[bigarray<0]=0
@@ -72,12 +78,33 @@ while k<3:
         # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
         newarray=eizoGS320.encode_np_array(bigarray)
         pil_im = Image.fromarray(newarray)
-        pngfile=str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
+        pngfile="ac"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
 
-        fileout.write("trial(['"+str(pngfile)+"', "+str(leftweightsmean)+","+str(leftweightsvar)+","+str(leftgrayminus)+","+str(rightweightsmean)+","+str(rightweightsvar)+","+str(rightgrayminus)+","+str(bggray)+","+str(seedleft)+","+str(seedright)+"], 'left', outputFile)\n")
+        fileoutac.write("trial(['"+str(pngfile)+"', "+str(leftweightsmean)+","+str(leftweightsvar)+","+str(leftgrayminus)+","+str(rightweightsmean)+","+str(rightweightsvar)+","+str(rightgrayminus)+","+str(bggray)+","+str(seedleft)+","+str(seedright)+"], 'left', outputFile)\n")
         pil_im.save(pngfile)
+
+        #do NC image
+        bigarray[(monitorsize[1]/2.0)-(infieldsize/2.0):(monitorsize[1]/2.0)+(infieldsize/2.0),(monitorsize[0]/2.0)-(surroundsize/2.0)-(separation/2.0)-(infieldsize/2.0):(monitorsize[0]/2.0)-(separation/2.0)-(surroundsize/2.0)+(infieldsize/2.0)] = leftpatchgray
+        bigarray[(monitorsize[1]/2.0)-(infieldsize/2.0):(monitorsize[1]/2.0)+(infieldsize/2.0),(monitorsize[0]/2.0)+(separation/2.0)+(surroundsize/2.0)-(infieldsize/2.0):(monitorsize[0]/2.0)+(surroundsize/2.0)+(separation/2.0)+(infieldsize/2.0)] = rightpatchgray
+
+        bigarray[bigarray>1023]=1023
+        bigarray[bigarray<0]=0
+
+        # (N, M) = np.shape(bigarray)
+        # newarray = np.zeros((N, M, 3), dtype=np.uint8)
+        # newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
+        # newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
+        # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
+        newarray=eizoGS320.encode_np_array(bigarray)
+        pil_im = Image.fromarray(newarray)
+        pngfile="nc"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
+
+        fileoutnc.write("trial(['"+str(pngfile)+"', "+str(leftweightsmean)+","+str(leftweightsvar)+","+str(leftgrayminus)+","+str(rightweightsmean)+","+str(rightweightsvar)+","+str(rightgrayminus)+","+str(bggray)+","+str(seedleft)+","+str(seedright)+"], 'left', outputFile)\n")
+        pil_im.save(pngfile)
+        
         j+=1
     k+=1
     j=0
 
-fileout.close()
+fileoutac.close()
+fileoutnc.close()

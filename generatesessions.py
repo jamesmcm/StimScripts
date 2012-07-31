@@ -50,14 +50,21 @@ while i<nstimnc:
 n=1
 
 while n<nsubjects:
-    sessionac=open("sessionac"+stimulilistacfilename[13:]+"subject"+str(n), "w")
+    sessionac=open("sessionac"+stimulilistacfilename[13:-4]+"subject"+str(n), "w")
+    sessionnc=open("sessionnc"+stimulilistncfilename[13:-4]+"subject"+str(n), "w")    
 
     sessionac.write("load_instructions('instructions/instructions1.png')\nload_instructions('instructions/instructions2_left.png')\nload_instructions('instructions/instructions3.png')\n")
-    samplelist=random.sample(stimulilistac, nviewsperblock*nblocks)
-
+    sessionnc.write("load_instructions('instructions/instructions1.png')\nload_instructions('instructions/instructions2_left.png')\nload_instructions('instructions/instructions3.png')\n")
+    
+    samplelistac=random.sample(stimulilistac, nviewsperblock*nblocks)
+    samplelistnc=random.sample(stimulilistnc, nviewsperblock*nblocks)    
     #Sample without replacement
     for k in range(nblocks):
         #take first nviewsperblock of samplelist and then print pause - also write code for practice tests, and with progress indicator etc. from Noras sessions
-        pass
+        for l in range(nviewsperblock):
+            sessionac.write(str(samplelist[l])+"\n")
+            sessionnc.write(str(samplelist[l])+"\n")            
+        sessionac.write("new_block('Pause')\n")
+        sessionnc.write("new_block('Pause')\n")
 
     n+=1
