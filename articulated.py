@@ -7,14 +7,14 @@ import sys
 
 sys.path.append("../achrolabutils/")
 k=0
-stimulilist=[(376, 456), (416, 496), (456, 488)]
+stimulilist=[(376, 456), (396, 476), (416, 496), (436, 516), (456, 536), (436, 476), (396, 516)]
 timeset=time.strftime("%Y%m%d_%H%M", time.localtime())
 fileoutac=open("stimulilistac"+str(timeset)+".txt", "w")
 fileoutnc=open("stimulilistnc"+str(timeset)+".txt", "w")
 i=0
 j=0
-while k<3:
-    while j<3:
+while k<len(stimulilist):
+    while j<len(stimulilist):
         monitorsize=[2048, 1536]
         # mondheight=monitorsize[1]/2.0
         # mondwidth=monitorsize[0]/4.0
@@ -78,7 +78,7 @@ while k<3:
         # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
         newarray=eizoGS320.encode_np_array(bigarray)
         pil_im = Image.fromarray(newarray)
-        pngfile="ac"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
+        pngfile="stimuli/ac"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
 
         fileoutac.write("trial(['"+str(pngfile)+"', "+str(leftweightsmean)+","+str(leftweightsvar)+","+str(leftgrayminus)+","+str(rightweightsmean)+","+str(rightweightsvar)+","+str(rightgrayminus)+","+str(bggray)+","+str(seedleft)+","+str(seedright)+"], 'left', outputFile)\n")
         pil_im.save(pngfile)
@@ -97,7 +97,7 @@ while k<3:
         # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
         newarray=eizoGS320.encode_np_array(bigarray)
         pil_im = Image.fromarray(newarray)
-        pngfile="nc"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
+        pngfile="stimuli/nc"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
 
         fileoutnc.write("trial(['"+str(pngfile)+"', "+str(leftweightsmean)+","+str(leftweightsvar)+","+str(leftgrayminus)+","+str(rightweightsmean)+","+str(rightweightsvar)+","+str(rightgrayminus)+","+str(bggray)+","+str(seedleft)+","+str(seedright)+"], 'left', outputFile)\n")
         pil_im.save(pngfile)

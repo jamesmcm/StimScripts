@@ -7,15 +7,22 @@
 
 Simple script to present a chosen stimuli from PNG on to the screen. Change stimulus shown with imagename variable.
 """
+stimlistfile="stimulilistac20120801_1126.txt"
+f=open(stimlistfile, "r")
+
+stimulilist=[]
+stimulilistlines=f.readlines()
+for i in range(len(stimulilistlines)):
+    stimulilist.append(stimulilistlines[i][stimulilistlines[i].find("'")+1:stimulilistlines[i].find("'", stimulilistlines[i].find("'")+1)])
 
 if __name__=='__main__':
     #Oft-changed constants here:
     usingeizo=True
     measuring=False #Measuring unimplemented here, spectrometer too slow
-    waittime=1 #Perhaps change this to more accurate frame-basis
+    waittime=5 #Perhaps change this to more accurate frame-basis
     calibrate = True
     prefix="cdata"
-    imagename="testpng.png"
+    #imagename="testpng.png"
     import time
 
     from ctypes import c_float
@@ -37,16 +44,16 @@ if __name__=='__main__':
         monitorsize=[1024,768]
         monitornum=0
         from achrolab.printing import CalibDataFile
-        from achrolab.eyeone import EyeOne, EyeOneConstants
+        from achrolab.eyeone import EyeOne, constants
         EyeOne = EyeOne.EyeOne(dummy=True) # EyeOne Object
         import eizoGS320
     else:
         from printing import CalibDataFile
         monitorsize=[1024, 1536]
         monitornum=1
-        from achrolab.eyeone import eyeone, EyeOneConstants
+        from achrolab.eyeone import eyeone, constants
         EyeOne = eyeone.EyeOne(dummy=False) # EyeOne Object
-
+        import eizoGS320
     # import Image
     # newarray=eizoGS320.encode_np_array(sarray)
     # # # ppl.imshow(newarray)
@@ -58,21 +65,21 @@ if __name__=='__main__':
     # ###
 
     # set EyeOne Pro variables
-    if(EyeOne.I1_SetOption(EyeOneConstants.I1_MEASUREMENT_MODE,
-        EyeOneConstants.I1_SINGLE_EMISSION) ==
-            EyeOneConstants.eNoError):
+    if(EyeOne.I1_SetOption(constants.I1_MEASUREMENT_MODE,
+        constants.I1_SINGLE_EMISSION) ==
+            constants.eNoError):
         print("Measurement mode set to single emission.")
     else:
         print("Failed to set measurement mode.")
-    if(EyeOne.I1_SetOption(EyeOneConstants.COLOR_SPACE_KEY,
-        EyeOneConstants.COLOR_SPACE_CIExyY) == EyeOneConstants.eNoError):
+    if(EyeOne.I1_SetOption(constants.COLOR_SPACE_KEY,
+        constants.COLOR_SPACE_CIExyY) == constants.eNoError):
         print("Color space set to CIExyY.")
     else:
         print("Failed to set color space.")
 
     # Initialization of spectrum and colorspace
-    colorspace = (c_float * EyeOneConstants.TRISTIMULUS_SIZE)()
-    spectrum = (c_float * EyeOneConstants.SPECTRUM_SIZE)()
+    colorspace = (c_float * constants.TRISTIMULUS_SIZE)()
+    spectrum = (c_float * constants.SPECTRUM_SIZE)()
     spec_list = []
     color_list = []
 
@@ -84,7 +91,7 @@ if __name__=='__main__':
 
     #bgstim=visual.PatchStim(mywin, tex=None, units='norm', pos=(0, 0), size=2, colorSpace=mywin.colorSpace, color=eizoGS320.encode_color(0, 0))
     #centralstim=visual.PatchStim(mywin, tex=None, units='norm', pos=(0, 0), size=patchsize, colorSpace=mywin.colorSpace, color=eizoGS320.encode_color(centralstimgray, centralstimgray))
-    phase0=visual.SimpleImageStim(mywin, image="mondriantest0.png", units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='phase0', autoLog=True)
+    phase0=visual.SimpleImageStim(mywin, image=stimulilist[0], units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='phase0', autoLog=True)
 
 
     #Allow change stimulus size, etc. easily - use globals or arguments
@@ -92,18 +99,18 @@ if __name__=='__main__':
     mywin.flip()
 
     if measuring==True:
-        if (calibrate or (EyeOne.I1_TriggerMeasurement() ==  EyeOneConstants.eDeviceNotCalibrated)):
+        if (calibrate or (EyeOne.I1_TriggerMeasurement() ==  constants.eDeviceNotCalibrated)):
             # Calibration of EyeOne
             print("\nPlease put EyeOne Pro on calibration plate and press \n key to start calibration.")
-            while(EyeOne.I1_KeyPressed() != EyeOneConstants.eNoError):
+            while(EyeOne.I1_KeyPressed() != constants.eNoError):
                 time.sleep(0.1)
-            if (EyeOne.I1_Calibrate() == EyeOneConstants.eNoError):
+            if (EyeOne.I1_Calibrate() == constants.eNoError):
                 print("Calibration done.")
             else:
                 print("Calibration failed.")
                 print("\nPlease put EyeOne Pro in measurement position and press \n key to start measurement.")
 
-            while(EyeOne.I1_KeyPressed() != EyeOneConstants.eNoError):
+            while(EyeOne.I1_KeyPressed() != constants.eNoError):
                 time.sleep(0.1)
 
     running=True
@@ -116,17 +123,17 @@ if __name__=='__main__':
                 if thiskey in ['q', 'escape']:
                     running=False
                     break
-            if j>1023:
+            if j>len(stimulilist):
                 j=0
-            phase0=visual.SimpleImageStim(mywin, image="mondriantest"+str(j)+".png", units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='phase0', autoLog=True)
+            phase0=visual.SimpleImageStim(mywin, image=stimulilist[j], units='norm', pos=(0.0, 0.0), contrast=1.0, opacity=1.0, flipHoriz=False, flipVert=False, name='phase0', autoLog=True)
             j+=1
             phase0.draw()
             mywin.flip()
             if measuring==True:
-                if(EyeOne.I1_TriggerMeasurement() != EyeOneConstants.eNoError):
+                if(EyeOne.I1_TriggerMeasurement() != constants.eNoError):
                     print("Measurement failed.")
                 # retrieve Color Space
-                if(EyeOne.I1_GetTriStimulus(colorspace, 0) != EyeOneConstants.eNoError):
+                if(EyeOne.I1_GetTriStimulus(colorspace, 0) != constants.eNoError):
                     print("Failed to get color space.")
                 else:
                     print("Color Space " + str(colorspace[:]) + "\n")

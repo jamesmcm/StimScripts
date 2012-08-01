@@ -89,6 +89,7 @@ def trial(data, same, outputFile):
     core.wait(2)    # ISI 2 sec in order to avoid influence of after image
 
 def load_instructions(inputfile):
+    inputfile=inputfile[0:inputfile.index("/")+1]+"conv"+inputfile[inputfile.index("/")+1:]
     im_draw = visual.SimpleImageStim(mywin, inputfile, units="pix")
 
     event.clearEvents()
@@ -166,7 +167,7 @@ else:
 # create window, mouse and clock
 
 mywin = visual.Window([1024,1536], monitor='mymon', color=bg,
-        allowGUI=False, screen=0, colorSpace='rgb255')
+        allowGUI=False, screen=1, colorSpace='rgb255')
 mymouse = event.Mouse(win=mywin)
 
 # set tubes

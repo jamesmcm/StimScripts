@@ -259,6 +259,8 @@ class Mondrian(BaseMonitorTesting):
    weights            List(Floats)    None        List of floats which define the probabilities of the colors in the Mondrian. Default None gives equal probabilities.
    accuracy           Float           0.05        The maximally allowed deviation between the relative frequency of a color and its specified weight.
    max_cycles         Integer         1000        The maximal number of mondrians created before the function aborts and returns the best mondrian so far.
+   write              Boolean         False       Whether the Mondrian array should be saved, usually is False.
+   seed               Hashable Object 1           This allows the seed to be set, so multiple Mondrians can be generated with the same background.
    pngfile            String          None        The path to the pre-made PNG file if one wishes to display a pre-made Mondrian.
    imagesize          List(2*Integer) None        The size of the Mondrian to be generated, as a 2 element list [X,Y]. If None uses defined monitor size.
    encode             Boolean         True        Sets whether to encode the black and white monitor or not.
