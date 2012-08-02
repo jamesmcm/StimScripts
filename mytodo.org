@@ -187,3 +187,7 @@ plot2d(((1.0/(16.0 * np.sqrt(2*np.pi))) * %e^(-0.5*(((x-511)/16)^2))), [x, 0, 10
 * TODO Write code to generate randomised session scripts with breaks, etc
 * TODO Convert instructions to eizo format before hand
 * DONE Produce stimuli with non-articulated centre
+* TODO Implement printing class for old code
+* TODO Tidy achrolab utils, add stimuliclass to achrolab, add documentation, scripts to achrolab-utils, make documentation source from correct directory
+* TODO Produce CIE colour image - use RColorBrewer, colorspace
+* TODO Take results for high variance, random, transparent set
