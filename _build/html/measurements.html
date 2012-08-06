@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Measurements &mdash; StimScripts 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="StimScripts 0.1 documentation" href="index.html" />
+    <link rel="next" title="Known Issues" href="knownissues.html" />
+    <link rel="prev" title="Classes contained in stimuliclass.py" href="stimclass.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="knownissues.html" title="Known Issues"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="stimclass.html" title="Classes contained in stimuliclass.py"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">StimScripts 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="measurements">
+<h1>Measurements<a class="headerlink" href="#measurements" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="measurements-of-color-between-calibrations">
+<h2>Measurements of color between calibrations<a class="headerlink" href="#measurements-of-color-between-calibrations" title="Permalink to this headline">¶</a></h2>
+<p>There is a significant difference between measurements sets of color, with different calibrations. The difference is minimal at low color/luminance values, but grows to be very significant at high values. This difference can also not be described by a change in only one fitting parameter to the gamma function, and so, as of yet, it is not possible to determine the &#8220;true&#8221; gray value from the luminance measurement and so not possible to compare measurements at high luminance/color values between different calibrations.</p>
+<div class="section" id="difference-between-calibrations-at-high-colour-luminance-values">
+<h3>Difference between calibrations at high colour/luminance values:<a class="headerlink" href="#difference-between-calibrations-at-high-colour-luminance-values" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/highend.png" src="_images/highend.png" />
+<p>Below are plots of the variatons between measurements and the variation between calibrations for different colour values:</p>
+</div>
+<div class="section" id="bean-plot-of-calibration-differences-for-color-800">
+<h3>Bean plot of calibration differences for color 800:<a class="headerlink" href="#bean-plot-of-calibration-differences-for-color-800" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/beanplotmean_800_color.png" src="_images/beanplotmean_800_color.png" />
+</div>
+<div class="section" id="bean-plot-of-calibration-differences-for-color-600">
+<h3>Bean plot of calibration differences for color 600:<a class="headerlink" href="#bean-plot-of-calibration-differences-for-color-600" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/beanplotmean_600_color.png" src="_images/beanplotmean_600_color.png" />
+</div>
+<div class="section" id="bean-plot-of-calibration-differences-for-color-400">
+<h3>Bean plot of calibration differences for color 400:<a class="headerlink" href="#bean-plot-of-calibration-differences-for-color-400" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/beanplotmean_400_color.png" src="_images/beanplotmean_400_color.png" />
+</div>
+<div class="section" id="bean-plot-of-calibration-differences-for-color-200">
+<h3>Bean plot of calibration differences for color 200:<a class="headerlink" href="#bean-plot-of-calibration-differences-for-color-200" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/beanplotmean_200_color.png" src="_images/beanplotmean_200_color.png" />
+</div>
+</div>
+<div class="section" id="lines">
+<h2>Lines<a class="headerlink" href="#lines" title="Permalink to this headline">¶</a></h2>
+<p>For these measurements, the Lines class was used to produce two images, one with horizontal lines and one with vertical lines, of varying pixel widths. At low pixel widths (i.e. 1) there is a significant difference in luminance between horizontally and vertically oriented lines, the horizontally oriented lines are brighter.</p>
+<div class="section" id="pixel-wide-lines-measured-at-the-monitor">
+<h3>1 pixel wide lines, measured at the monitor:<a class="headerlink" href="#pixel-wide-lines-measured-at-the-monitor" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/1linesclose.png" src="_images/1linesclose.png" />
+</div>
+<div class="section" id="pixel-wide-lines-measured-at-distance-through-box">
+<h3>1 pixel wide lines, measured at distance through box:<a class="headerlink" href="#pixel-wide-lines-measured-at-distance-through-box" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/line1dist.png" src="_images/line1dist.png" />
+</div>
+<div class="section" id="id1">
+<h3>8 pixel wide lines, measured at distance through box:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/line8dist.png" src="_images/line8dist.png" />
+</div>
+<div class="section" id="id2">
+<h3>32 pixel wide lines, measured at distance through box:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/line32dist.png" src="_images/line32dist.png" />
+<p>It is not yet known why there is a difference between the two orientations.</p>
+</div>
+</div>
+<div class="section" id="hysteresis-loop">
+<h2>Hysteresis Loop<a class="headerlink" href="#hysteresis-loop" title="Permalink to this headline">¶</a></h2>
+<p>Measurements were taken of the luminosity of the colours first increasing from low to high, and then decreasing from high to low.
+No significant difference was observed over that of the random differences between measurements.</p>
+<div class="section" id="plot-of-luminance-against-colour-value-with-colour-value-increasing-and-decreasing">
+<h3>Plot of luminance against colour value, with colour value increasing and decreasing:<a class="headerlink" href="#plot-of-luminance-against-colour-value-with-colour-value-increasing-and-decreasing" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/hgraph3.png" src="_images/hgraph3.png" />
+</div>
+</div>
+<div class="section" id="tube-measurements">
+<h2>Tube measurements<a class="headerlink" href="#tube-measurements" title="Permalink to this headline">¶</a></h2>
+<p>The possible difference between measurements of the luminance of the tubes from increasing voltage, and from decreasing voltage was measured. Strangely a difference is measured, though it is not clear if this is much greater than error due to recalibration, etc.</p>
+<p>In the following graphs, the black points are the measurements decreasing from high voltage, and the coloured points are the measurements increasing from low voltage.</p>
+<div class="section" id="hysteresis-measurements-for-the-red-tube">
+<h3>Hysteresis measurements for the red tube:<a class="headerlink" href="#hysteresis-measurements-for-the-red-tube" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/redhysteresis.png" src="_images/redhysteresis.png" />
+</div>
+<div class="section" id="hysteresis-measurements-for-the-green-tube">
+<h3>Hysteresis measurements for the green tube:<a class="headerlink" href="#hysteresis-measurements-for-the-green-tube" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/greenhysteresis.png" src="_images/greenhysteresis.png" />
+</div>
+<div class="section" id="hysteresis-measurements-for-the-blue-tube">
+<h3>Hysteresis measurements for the blue tube:<a class="headerlink" href="#hysteresis-measurements-for-the-blue-tube" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/bluehysteresis.png" src="_images/bluehysteresis.png" />
+</div>
+<div class="section" id="hysteresis-measurements-for-all-of-the-tubes">
+<h3>Hysteresis measurements for all of the tubes:<a class="headerlink" href="#hysteresis-measurements-for-all-of-the-tubes" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/allhysteresis.png" src="_images/allhysteresis.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Measurements</a><ul>
+<li><a class="reference internal" href="#measurements-of-color-between-calibrations">Measurements of color between calibrations</a><ul>
+<li><a class="reference internal" href="#difference-between-calibrations-at-high-colour-luminance-values">Difference between calibrations at high colour/luminance values:</a></li>
+<li><a class="reference internal" href="#bean-plot-of-calibration-differences-for-color-800">Bean plot of calibration differences for color 800:</a></li>
+<li><a class="reference internal" href="#bean-plot-of-calibration-differences-for-color-600">Bean plot of calibration differences for color 600:</a></li>
+<li><a class="reference internal" href="#bean-plot-of-calibration-differences-for-color-400">Bean plot of calibration differences for color 400:</a></li>
+<li><a class="reference internal" href="#bean-plot-of-calibration-differences-for-color-200">Bean plot of calibration differences for color 200:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lines">Lines</a><ul>
+<li><a class="reference internal" href="#pixel-wide-lines-measured-at-the-monitor">1 pixel wide lines, measured at the monitor:</a></li>
+<li><a class="reference internal" href="#pixel-wide-lines-measured-at-distance-through-box">1 pixel wide lines, measured at distance through box:</a></li>
+<li><a class="reference internal" href="#id1">8 pixel wide lines, measured at distance through box:</a></li>
+<li><a class="reference internal" href="#id2">32 pixel wide lines, measured at distance through box:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hysteresis-loop">Hysteresis Loop</a><ul>
+<li><a class="reference internal" href="#plot-of-luminance-against-colour-value-with-colour-value-increasing-and-decreasing">Plot of luminance against colour value, with colour value increasing and decreasing:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tube-measurements">Tube measurements</a><ul>
+<li><a class="reference internal" href="#hysteresis-measurements-for-the-red-tube">Hysteresis measurements for the red tube:</a></li>
+<li><a class="reference internal" href="#hysteresis-measurements-for-the-green-tube">Hysteresis measurements for the green tube:</a></li>
+<li><a class="reference internal" href="#hysteresis-measurements-for-the-blue-tube">Hysteresis measurements for the blue tube:</a></li>
+<li><a class="reference internal" href="#hysteresis-measurements-for-all-of-the-tubes">Hysteresis measurements for all of the tubes:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="stimclass.html"
+                        title="previous chapter">Classes contained in stimuliclass.py</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="knownissues.html"
+                        title="next chapter">Known Issues</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/measurements.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="knownissues.html" title="Known Issues"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="stimclass.html" title="Classes contained in stimuliclass.py"
+             >previous</a> |</li>
+        <li><a href="index.html">StimScripts 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, James McMurray.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
