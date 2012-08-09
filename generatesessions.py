@@ -59,6 +59,8 @@ while n<=nsubjects:
     #Sample without replacement all stimuli
     samplelistac=random.sample(stimulilistac, nviewsperblock*nblocks*nsessions)
     samplelistnc=random.sample(stimulilistnc, nviewsperblock*nblocks*nsessions)
+    totalsum=0
+
     if n%2==1: #alternate left/right with changing subjects
         direction="left"
     else:
@@ -101,8 +103,9 @@ while n<=nsubjects:
         for k in range(nblocks):
             #take first nviewsperblock of samplelist and then print pause - also write code for practice tests, and with progress indicator etc. from Noras sessions
             for l in range(nviewsperblock):
-                sampleacstr=str(samplelistac[l])
-                samplencstr=str(samplelistnc[l])
+                sampleacstr=str(samplelistac[totalsum])
+                samplencstr=str(samplelistnc[totalsum])
+                totalsum+=1
                 if direction=="right":
                     sampleacstr=sampleacstr.replace("left","right")
                     samplencstr=samplencstr.replace("left","right")
