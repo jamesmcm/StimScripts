@@ -143,7 +143,6 @@ Present a black and white grid on the stimulus and transpose it.
 ** BLEND_RGB_MIN
 ** But how to co-operate with psychopy
 ** Perhaps make imaginary 2048x1536 screen to draw to (surf array or something) which is then converted to 1024x1536 in final step
-* TODO Attempt to write swirly wheel
 * TODO Modify Berlin code so can choose whther to make spherical modification or not
 * DONE Add exception for black screen when image is too big
 ** TODO Yes, there are lots of sanity checks like this that would be great to
@@ -168,8 +167,8 @@ wants them to occur.
 * DONE Fix bug with monitorsize -if using eizo want to produce stimuli for 2048 but project at 1024 - just override size
 * DONE Do square test
 * TODO Do psychopy central error management
-* TODO Document measurements - lines + problem, hysteresis loop, random gamma measurements, gamma measurements against size of patch, document output gray values, document problem with threading
-* TODO Fix broken experiment2, memory problem with PNGs?
+* DONE Document measurements - lines + problem, hysteresis loop, random gamma measurements, gamma measurements against size of patch, document output gray values, document problem with threading
+* DONE Fix broken experiment2, memory problem with PNGs?
 * TODO Mondrian and transparent infield - use transparency equation, Metelli
 ** Generate Mondrian as an array of the stimulus size, then make big numpy array set to BG color, then set a subset of this array to equal the mondrian array, then apply the transparency
 * DONE Fix for Python3 - install at work
@@ -183,13 +182,22 @@ plot2d(((1.0/(16.0 * np.sqrt(2*np.pi))) * %e^(-0.5*(((x-511)/16)^2))), [x, 0, 10
 * TODO Implement transparency function
 * DONE Change calibtubes so it just goes down the voltages, check function looks same
 * DONE Edit printing.py to allow experiment pritning
-* TODO How does it pause and resume data collection?
-* TODO Write code to generate randomised session scripts with breaks, etc
-* TODO Convert instructions to eizo format before hand
+* DONE Write code to generate randomised session scripts with breaks, etc
+* DONE Convert instructions to eizo format before hand
 * DONE Produce stimuli with non-articulated centre
 * TODO Implement printing class for old code
-* TODO Tidy achrolab utils, add stimuliclass to achrolab, add documentation, scripts to achrolab-utils, make documentation source from correct directory
+* DONE Tidy achrolab utils, add stimuliclass to achrolab, add documentation, scripts to achrolab-utils, make documentation source from correct directory
 * TODO Produce CIE colour image - use RColorBrewer, colorspace
-* TODO Take results for high variance, random, transparent set
-* TODO Remake session files
-* TODO Fix bug in myexp.py on saving data (Blue Green tubes not saved)
+* DONE Take results for high variance, random, transparent set
+* DONE Remake session files
+* DONE Fix bug in myexp.py on saving data (Blue Green tubes not saved)
+* Presentation:
+** Printing class
+** Problems with calibration - beanplots
+** Berlin code and scripts
+** Stimuli Class - problems with image sizes
+** Articulated stimuli generation
+** Psychopy exceptions
+** Lines problem
+** Loading many stimuli
+** Results from experiments

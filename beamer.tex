@@ -1,0 +1,505 @@
+\catcode`~=11 % make LaTeX treat tilde (~) like a normal character
+\newcommand{\urltilde}{\kern -.15em\lower .7ex\hbox{~}\kern .04em}
+\catcode`~=13 % revert back to treating tilde (~) as an active character
+\providecommand{\abs}[1]{\left | #1\right |}
+
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usetheme{default}
+%Warsaw
+\title[The Electronic Properties Of Graphene]{The Electronic Properties Of Graphene:\\Theoretical Modelling of Doping}
+\author{James McMurray}
+\institute{Supervisor: Dr. Shytov\\Quantum Systems and Nanomaterials Group\\University Of Exeter}
+\date{11/11/2011}
+\begin{document}
+
+
+\pgfdeclareimage[height=0.5cm]{logo}{exlogo.png}
+\logo{\pgfuseimage{logo}}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+  \begin{frame}<beamer>
+    \frametitle{Outline of talk}
+    \tableofcontents
+  \end{frame}
+
+\section{Introduction}
+\subsection{What is Graphene?}
+\begin{frame}[t]{What is Graphene?}
+\begin{itemize}
+\item Formed from Carbon atoms in a hexagonal lattice. 
+\item First 2D crystal observed experimentally - Geim and Novoselov 2004.
+\item Produced by the micromechanical exfoliation of graphite:\\
+\begin{enumerate}
+\item Use sticky tape to repeatedly peel off thin layers of carbon.
+\item Dissolve the sticky tape in solution.
+\item Transfer layers to a Silicon Dioxide substrate.
+\item Use an optical microscope to observe interference from Graphene samples.
+\end{enumerate}
+\end{itemize}
+
+\begin{figure}[c]
+\includegraphics[height=2cm]{graphenediag.png}
+\caption{A diagram of the basic structure of Graphene. (Taken from \url{http://www.chem1.com/acad/webtext/states/states.html})}
+\end{figure}
+
+\end{frame}
+
+%What are quasiparticles
+%What defects?
+
+
+\subsection{Possible Applications of Graphene}
+\begin{frame}[t]{Possible applications of Graphene}
+\begin{itemize}
+\item Possible uses in high frequency transistors
+\begin{itemize}
+\item  But Graphene Field Effect Transistors show low on-off ratio - ``off" state still has relatively high conduction compared to ``on" state
+\item Large energy wastage
+\item Need band gap
+\item Can be engineered through doping - the addition of Hydrogen to produce ``graphane" or fluorine to produce fluorinated graphene.
+\end{itemize}
+\end{itemize}
+
+\begin{figure}[c]
+\includegraphics[height=2.5cm]{graphanecrys2.jpg}
+\caption{An artist's impression of graphane, Carbon atoms in blue, Hydrogen atoms in red. Taken from \url{http://www.physorg.com/news152545648.html}}
+\end{figure}
+\end{frame}
+
+
+\section{Our Aim}
+\begin{frame}[t]{The Aim of our project}
+\begin{itemize}
+\item Computationally model the effect of defects in graphene
+\item Relevant for Hydrogenated and Fluorinated graphene
+\item Basic methodology:
+\begin{enumerate}
+\item Compute the Hamiltonian to obtain the density of states and eigenvectors for the system - using the Tight Binding Model
+\item Use this to calculate the transmission coefficients - considering the transmission at a potential barrier
+\item Use these to calculate the conductance of the modelled sample - using the Landauer formula
+\end{enumerate}
+\item Will also later model the effect of magnetic fields to investigate the  Quantum Hall Effect in graphene (not included in this talk)
+\end{itemize}
+\end{frame}
+
+\section{Theory of Graphene}
+\subsection{Crystal Lattice structure}
+\begin{frame}[t]{Crystal Lattice structure - Real Lattice}
+\begin{itemize}
+\item Carbon atoms in a hexagonal lattice
+\item Two unique sublattices labelled A and B.
+\item Lattice vectors: $\mathbf{a_{1,2}} = \frac{3a}{2} ~\mathbf{\hat i}~ \pm~ \frac{\sqrt{3}a}{2} ~\mathbf{\hat j}$
+\item Lattice constant: $a \approx 2.461\text{\AA}$
+\end{itemize}
+
+\begin{figure}[c]
+\includegraphics[height=4cm]{mygraphenediag.png}
+\caption{A diagram of the real space lattice of graphene.}
+\end{figure}
+\end{frame}
+
+\subsection{The Tight Binding Model}
+\begin{frame}[t]{The Tight Binding Model - Calculating the Hamiltonian}
+\begin{itemize}
+\item Assume electrons reside on lattice sites only
+\item Assume that electrons can only hop to nearest neighbours (can include higher nearest neighbour interactions)
+\item So electrons can only move from sublattice A points to sublattice B points and vice versa.
+\item In the Hamiltonian matrix, $H_{ij}$ is the energy cost for hopping from position $i$ to position $j$.
+\end{itemize}
+\begin{figure}[c]
+\includegraphics[height=3cm]{hopping.png}
+\caption{A diagram showing hopping possibilities from a Carbon atom in the lattice.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{The Tight Binding Model (continued)}
+
+\begin{figure}[c]
+\includegraphics[height=3cm]{hopping2.png}
+\caption{Labelling the sites 1-4.}
+\end{figure}
+\begin{itemize}
+\item With a nearest-neighbour hopping energy $t$ ($t \approx 2.8eV$), the Hamiltonian is:
+\begin{equation}
+\hat {\text{H}} = \left ( \begin{array}{cccc}
+E_0 & -t & -t & -t\\
+-t & E_1 & 0 & 0\\
+-t & 0 & E_2 & 0\\
+-t & 0 & 0 & E_3\\
+\end{array}
+\right )
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Tight Binding Model (continued)}
+\begin{itemize}
+\item By considering the lattice geometry, and the sum of the wavefunctions across both sublattices, the following expression is obtained for the Time Independent Schr\"{o}dinger Equation:
+\begin{equation}
+E \psi = \left ( \begin{array}{cc}
+0 & -\tilde t(k)\\
+-\tilde t^* (k) & 0\\
+\end{array} \right ) \psi
+\end{equation}
+where
+\begin{equation}
+\tilde{t(k)}=t\left ( e^{ik_x a} + e^{\frac{-ik_x a}{2}} 2\cos\left(\frac{k_y \sqrt{3}a}{2} \right ) \right )
+\end{equation}
+\item Taking the eigenvalues of the matrix yields:
+\begin{equation}
+E = \pm \abs{\tilde t(k)}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Dirac Points on band structure}
+\begin{figure}
+\includegraphics[height=6cm]{defecttransport.png}
+\caption{A diagram of the band structure of graphene. The Dirac points are where the bands converge. Taken from \url{http://nextbigfuture.com/2011/04/nrl-researchers-take-step-toward.html}}
+\end{figure}
+\end{frame}
+
+\subsection{Dirac Points}
+\begin{frame}[t]{Dirac Points}
+\begin{itemize}
+\item Points in reciprocal space where  $\abs{(\tilde t(k))} =0$.
+\item These lie on the vertices of the first Brillouin Zone in reciprocal space.
+\item The unique Dirac points are K and K'.
+\end{itemize}
+\begin{figure}[c]
+\includegraphics[height=4cm]{kspacediag.png}
+\caption{A diagram of the first Brillouin zone of graphene in reciprocal space.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Dispersion near the Dirac points}
+\begin{itemize}
+\item Near the Dirac points the Hamiltonian reduces to:
+\begin{equation} \hat{H} = \hbar v \left ( \begin{array}{cc}
+0 & k_x - ik_y \\
+k_x + ik_y & 0\\
+\end{array} \right )
+\end{equation}
+\item Taking the eigenvalues of this yields:
+\begin{equation}
+E = \pm \hbar v k
+\end{equation}
+\item This is a linear dispersion relation, and means that the quasiparticles are massless fermions near the Dirac points - they act as relativistic particles with a constant velocity $v \approx 10^6 \text { m s}^{-1}$
+\item Note that since the Dirac points are points in \emph{reciprocal} space, this relation applies for electron transport through-out the graphene sample as energy is always small compared to peak energy ($t\approx 2.8$ eV corresponds to $\urltilde$30,000 K).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Showing the effective mass is zero at the Dirac points}
+\begin{itemize}
+\item At the Dirac points we obtained the dispersion relation:
+\begin{equation}
+E=\hbar v k
+\end{equation}
+\item From Special Relativity we know:
+\begin{equation}
+E=\sqrt{p^2c^2 + m^2c^4}
+\end{equation}
+\item So the dispersion relation is just the $m\rightarrow0$ case of this.
+\begin{equation}
+\therefore E=\sqrt{p^2c^2} = pc = \hbar k c
+\end{equation}
+\item Constant velocity is $v\approx 10^6 \text{ m s}^{-1}$  instead of c ($\urltilde 3\times 10^8 \text{ m s}^{-1}$).
+\item So effective mass is zero and relativistic effects much more apparent.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Dispersion near the Dirac points}
+\begin{itemize}
+\item This means that near the Dirac points, the dispersion follows ``Dirac cones":
+\begin{figure}[c]
+\includegraphics[height=4cm]{honeylattice.png}
+\caption{A diagram showing Dirac Cones at the Dirac points in reciprocal space. Taken from:  \url{http://www.mpipks-dresden.mpg.de/mpi-doc/CondensedMatter//content/QuantHall.shtml}}
+\end{figure}
+\end{itemize}
+
+
+\end{frame}
+
+\subsection{Klein Paradox}
+\begin{frame}[t]{Klein Paradox}
+\begin{itemize}
+\item The Klein Paradox results as a consequence of the massless Dirac fermion quasiparticles, and their linear dispersion.
+\item Unintuitive result that transmission probability increases with the height of the potential barrier, and tends to 1 as the potential tends to infinity.
+\item This means that the quasiparticles cannot be localised.
+\item We should observe this effect when calculating transmission coefficients.
+\end{itemize}
+\begin{figure}[c]
+\includegraphics[height=3cm]{diraccones.png}
+\caption{A diagram showing the principle of how the transmission occurs by shifting the quasiparticle to the lower cone.}
+\end{figure}
+\end{frame}
+
+\subsection{The Landauer Formula}
+\begin{frame}[t]{The Landauer Formula - calculating the conductance}
+\begin{itemize}
+\item By considering the electrons that are able to move across a potential and the density of states of graphene near the Dirac points, the following equation is obtained for the net conductance:
+\begin{equation}
+G \approx \frac{e^2}{\pi \hbar} \sum_i T_i
+\end{equation}
+where the sum is taken across all channels (taking in to account the possibility for varying transmission amplitudes)
+\item So per channel the conductivity is:
+\begin{equation}
+\sigma \approx \frac{e^2}{\pi \hbar}
+\end{equation}
+\item Note that this means there is a minimum conductivity even in ideal, undoped Graphene, where there should be no scattering and no net current carriers!
+\end{itemize}
+\end{frame}
+
+\subsection{The Missing Pi Problem}
+\begin{frame}[t]{The Missing Pi Problem}
+\begin{itemize}
+\item But experimental results show the minimum conductivity to be an order of $\pi$ larger:
+\begin{equation}
+\sigma_{\text{experimental}} \approx \frac{e^2}{\hbar}
+\end{equation}
+\item This is known as the ``Missing Pi(e) Problem"
+\item Problem still unsolved
+\item But 2007 report by Miao \textit{et al.} in Science \textbf{317} 3150, reported that the experimental value approached the theoretical value for specific shapes - small, wide graphene rectangles were closer to theory.
+\end{itemize}
+\end{frame}
+
+
+\subsection{Summary}
+\begin{frame}[t]{Summary: The interesting theory of Graphene}
+\begin{itemize}
+\item Exhibits high crystal quality - electrons can thousands of interatomic distances without scattering.
+\item Massless Dirac fermions near Dirac points - show relativistic effects in ordinary conditions!
+\item Klein Paradox - Particles tunnel through a potential barrier with a transmission coefficient which tends to 1 as the potential tends to infinity.
+\item Universal minimum conductivity:
+\begin{itemize}
+\item Finite conductivity in undoped graphene at Dirac points (where there are no net charge carriers) even at low T (when there is no scattering)
+\item Conductivity without charge carriers!
+\item Normally materials would transition to insulators at low T
+\item But in Graphene there is a suppression of localisation
+\end{itemize}
+\item Missing Pi problem - observed minimum conductivity is a multiple of pi greater than predicted by theory
+\end{itemize}
+\end{frame}
+
+\section{Preliminary Results}
+
+\begin{frame}[t]{Preliminary Work}
+\begin{itemize}
+\item We have already started work on the project
+\item Program written in C
+\item Produce Hamiltonian eigenvectors and eigenvalues
+\item Produce density of states
+\item Already have data for the density of states plotted with a fit from an analytical approach by Dr. Shytov
+\item Resolution of histogram limited by the size of the modelled sample
+\end{itemize}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{shytovfit450.png}}
+\begin{frame}[plain]
+\end{frame}
+}
+
+\begin{frame}[t]{Conclusion - What is to be done?}
+\begin{itemize}
+\item Add method to normalise the density of states per unit area
+\item Add method for modelling defects
+\begin{itemize}
+\item For vacancies this means setting the energy to occupy a point to a very large number
+\end{itemize}
+\item Add methods to obtain transmission coefficients and conductance
+\item Will later consider magnetic field effects
+\item Some computational challenges due to the size of the considered samples
+\begin{itemize}
+\item High memory usage if all zeros are stored as double precision floats too
+\end{itemize}
+\item The Hamiltonian is sparse and so we will attempt to use sparse matrix methods
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Questions?}
+\begin{center}
+{\huge Any questions?}
+\end{center}
+\begin{itemize}
+\item Thank you for your time!
+\item Thanks to my supervisor Dr. Shytov for his help and discussions.
+\item Thanks to my colleagues Chris Beckerleg and Will Smith for their continuing work.
+\item Presentation produced using \LaTeX ~ and Beamer.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Supplementary slides}
+\begin{center}
+{\Huge Supplementary slides}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{Why is the ``impossible" possible?}
+\begin{itemize}
+\item From the Mermin-Wagner theorem, thermal fluctuations would	 make 2D structures unstable at any finite temperature.
+\item This was confirmed as the melting temperature of thin films rapidly decreased with decreasing temperature\footnote{See Geim \& Novoselov, The rise of graphene, \emph{Nat. Mat.} {\bf 6}, 183 (2007).}.
+\item In graphene, the gentle 3D warping (\urltilde10nm) provides stability by minimising thermal vibrations.
+\begin{figure}[c]
+\includegraphics[height=3cm]{corrugatedgraphene.jpg}
+\caption{An artist's impression of corrugated Graphene: Jannik Meyer. (Taken from \url{http://www.nanowerk.com/})}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[t]{Why is localisation suppressed?}
+\begin{itemize}
+\item The suppression of localisation is a result of the relativistic effects on the quasiparticles.
+\item The quasiparticles cannot be localised due to the Zitterbewegung (jittery motion) effect.
+\item The Klein effect also means that the quasiparticles are transmitted through potential barriers with a probability $\approx 1$.
+\item This is also contributes to the suppression of localisation.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Translation to ``brick wall" model for computation}
+\begin{figure}[c]
+\includegraphics[height=3cm]{translation.png}
+\caption{Diagram showing the principle of the translation.}
+\end{figure}
+\begin{itemize}
+\item We translate to the "brick-wall" model when considering the bonds.
+\item So all bonds are straight horizontal or vertical - no $\sqrt{3}$ factors.
+\item But we must reconsider these when normalising the density of states per unit area and other considerations.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Tight Binding Approximation derivation}
+\begin{itemize}
+\item The Time Independent Schr\"{o}dinger Equation (TISE) states:
+\begin{equation}
+E\psi = \hat{H} \psi 
+\end{equation}
+\item From Bloch theory we know:
+\begin{equation}
+\psi_A = \tilde \psi_A e^{i(\mathbf{k} \cdot \mathbf{r})}, ~ \psi_B = \tilde \psi_B e^{i(\mathbf{k} \cdot \mathbf{r})}
+\end{equation}
+\item So from point 1, the TISE becomes:
+\begin{equation}
+E \tilde\psi_A = - \sum_{i,j}H_{ij}\psi_{j} = H_{12}\psi_2 + H_{13}\psi_3 + H_{14}\psi_4 = -t(\psi_2 + \psi_3 + \psi_4)
+\end{equation}
+\item But recall that:
+\begin{equation}
+\mathbf{k} \cdot \mathbf{r} = k_x x + k_y y
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Tight Binding Approximation derivation (2)}
+\begin{itemize}
+\item So by considering the geometry of the lattice points, assuming $\mathbf r$ has its origin at point 1, the TISE becomes:
+\begin{equation}
+E \tilde \psi_A = -t \left ( \tilde \psi_B \left ( e^{ik_x a} + e^{\frac{-ik_x a}{2} + \frac{i k_y a \sqrt{3}}{2}} + e^{\frac{-i k_x a}{2} - \frac{i k_y a \sqrt{3}}{2}} \right ) \right )
+\end{equation}
+\item Which can be written as:
+\begin{equation}
+E \tilde \psi_A = -t(k) \tilde \psi_B
+\end{equation}
+\item Combining this with an equation for a point on sublattice B (repeating the same steps), one obtains:
+\begin{equation}
+E \psi = \left ( \begin{array}{cc}
+0 & -\tilde t(k)\\
+-\tilde t^* (k) & 0\\
+\end{array} \right ) \psi
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Derivation of Hamiltonian near Dirac points}
+\begin{itemize}
+\item From previous derivation:
+\begin{eqnarray*}
+\abs{\tilde t(k)} &=& t\abs{ e^{ik_x a} + e^{\frac{-ik_x a}{2} + \frac{i k_y a \sqrt{3}}{2}} + e^{\frac{-i k_x a}{2} - \frac{i k_y a \sqrt{3}}{2}}} \\&= &t\abs{ e^{ik_x a} + e^{\frac{-ik_x a}{2}} 2\cos\left(\frac{k_y \sqrt{3}a}{2} \right )} =0
+ \end{eqnarray*}
+ Near K and K'.
+ \item Dividing by $e^{ik_x a}$:
+ \begin{equation}
+ \abs{\tilde t(k)}= t\abs{ 1 + e^{\frac{-i3k_x a}{2}} 2\cos\left(\frac{k_y \sqrt{3}a}{2} \right )} 
+ \end{equation}
+ \item Using Taylor approximation near K:
+ \begin{equation}
+ \tilde t(K+\delta k) \approx \tilde t(K) + \delta k_x \frac{\partial \tilde t(k)}{\partial k_x} + \delta k_y \frac{\partial \tilde t(k)}{\partial k_y}
+ \end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Derivation of Hamiltonian near Dirac points (2)}
+\begin{itemize}
+\item Calculating the differentials:
+\begin{eqnarray*}
+ \tilde t(K+\delta k) \approx \tilde t(K) &+& \delta k_x \left ( \frac{-3ai}{2} e^{\frac{-ik_x 3a}{2}} \cdot 2 \cos \left (\frac{k_y \sqrt{3}a}{2} \right ) \right )t\\& + &\delta k_y \left (-\sqrt{3} a \sin \left (\frac{k_y a \sqrt{3}}{2} \right ) e^{\frac{-ik_x 3a}{2}} \right )t 
+ \end{eqnarray*}
+ \item Substituting for K: $\left (0, \frac{4\pi}{3\sqrt{3}a} \right)$
+ \begin{equation}
+  \tilde t(K+\delta k) \approx 0 + \delta k_x \left ( \frac{3ait}{2} \right ) + \delta k_y \left (\frac{-3at}{2} \right )
+  \end{equation}
+  \item So the Hamiltonian can be written:
+  \begin{equation}
+  H_K (k) = \frac{3at}{2}\left ( \begin{array}{cc}
+  0 & k_y - i k_x\\ 
+  k_y + ik_x & 0\\ \end{array} \right )
+  \end{equation}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Derivation of Hamiltonian near Dirac points (3)}
+\begin{itemize}
+\item Can write this in terms of Pauli matrices $\sigma$:
+\begin{equation}
+\sigma_x = \left ( \begin{array}{cc} 0 & 1\\ 1 & 0\\ \end{array} \right ) ~,~ \sigma_y = \left ( \begin{array}{cc} 0 & -i\\ i & 0\\ \end{array} \right )
+\end{equation}
+\item Bust must swap $k_x$ and $k_y$ to make this simple (rotating the k vector):
+\begin{equation}
+k_x \rightarrow k_y ~,~ k_y \rightarrow -k_x
+\end{equation}
+\item So the Hamiltonian at K becomes:
+  \begin{equation}
+  H_K (k) = \frac{3at}{2}\left ( \begin{array}{cc}
+  0 & -k_x - i k_y\\ 
+  -k_x + ik_y & 0\\ \end{array} \right )
+  \end{equation}
+  \item Which can be written as:
+  \begin{equation}
+  H_K(k) = -\frac{3at}{2}\left ( \vec{\sigma^*} \cdot \vec{k} \right )
+  \end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Derivation of Hamiltonian near Dirac points (4)}
+\begin{itemize}
+\item Similarly for K': $\left (0, \frac{-4\pi}{3\sqrt{3}a} \right)$
+\begin{equation}
+  H_{K'}(k) = \frac{3at}{2}\left ( \vec{\sigma} \cdot \vec{k} \right )
+  \end{equation}
+    \item Taking the eigenvalues of $H_K(k)$:
+  \begin{equation}
+  \left | \begin{array}{cc} E & \frac{3at}{2} \left (  -k_x - i k_y \right ) \\ \frac{3at}{2} \left (  -k_x + ik_y \right ) & E\\ \end{array} \right | =0
+  \end{equation}
+    \begin{eqnarray}
+  &\therefore& E^2 - \left ( \frac{3at}{2} \right )^2 \left (k_x^2 - ik_x k_y + i k_x k_y + k_y ^2 \right )\\
+  &\therefore& E^2 - \left ( \frac{3at}{2} \right )^2 k^2 =0 ~ \therefore E = \pm \frac{3at}{2} k
+  \end{eqnarray}
+\item Linear dispersion - can be written as $E = v\hbar k$
+\end{itemize}
+\end{frame}
+
+
+
+%Why trigonal warping
+%Derivation of Landauer formula
+%Klein Paradox formula
+%Van Hove singularity
+%What is a field effect transistor?
+
+\end{document}

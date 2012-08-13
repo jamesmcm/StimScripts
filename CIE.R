@@ -9,7 +9,15 @@ j=0
 while(i<=100){
   while(j<=100){
     #Switch to xyY
-    colort <- XYZ( 2*i, 100,2*j)
+    Y=1
+    x=i/100
+    y=j/100
+    X=(Y/y)*x
+    Z=(Y/y)*(1-x-y)
+    ## print(X)
+    ## print(Y)
+    ## print(Z)
+    colort <- XYZ(X, Y,Z)
     mypalette <- c(mypalette, hex(colort, gamma = NULL, fixup = FALSE))
     j <- j+1
   }
