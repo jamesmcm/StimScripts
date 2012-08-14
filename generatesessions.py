@@ -5,7 +5,7 @@ import random
 #random.seed(1)
 currentsession=1
 headerstr="#!/usr/bin/env python\n# -*- encoding: utf-8 -*-\n"
-stimulilistncfilename="stimulilistac20120801_1211.txt"
+stimulilistncfilename="stimulilistac20120802_1219.txt"
 stimulilistacfilename=stimulilistncfilename.replace("nc","ac")
 #stimulilistacfilename="stimulilistac20120725_1421.txt"
 #3920
@@ -22,6 +22,9 @@ fac=open(stimulilistacfilename, "r")
 
 stimulilistnc=fnc.readlines()
 stimulilistac=fac.readlines()
+
+for i in range(len(stimulilistnc)):
+    stimulilistnc[i]=stimulilistnc[i].replace("ac","nc")
 
 nstimnc=len(stimulilistnc)#9
 nstimac=len(stimulilistac) #Should equal eachother
