@@ -6,8 +6,8 @@ linewidth=4
 
 # stim=Cornsweet(usingeizo=False, measuring=False, prefix=str(linewidth)+"distlines", waittime=0.5, encode=False)
 
-# stim=WhiteIllusion(usingeizo=False, measuring=False, prefix=str(linewidth)+"distlines", waittime=0.5, encode=False)
+stim=WhiteIllusion(usingeizo=False, measuring=False, prefix=str(linewidth)+"distlines", waittime=0.5, encode=False, kind="gil")
 
 # stim=Todorovic(usingeizo=False, measuring=False, prefix=str(linewidth)+"distlines", waittime=0.5, encode=False)
 
-stim=SinGrating(usingeizo=False, measuring=False, prefix=str(linewidth)+"distlines", waittime=0.5, encode=False, monitorsize=[1024,768])
+# stim=SinGrating(usingeizo=False, measuring=False, prefix=str(linewidth)+"distlines", waittime=0.5, encode=False, monitorsize=[1024,768])
