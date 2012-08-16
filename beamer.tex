@@ -99,6 +99,12 @@ Also provided methods to produce the following stimuli. Now implemented in {\it 
 \end{figure}
 \end{frame}
 
+\begin{frame}[t]{Minor issue with Stimuli generation}
+~\\
+Note that because some of the stimuli (Cornsweet, Todorovic, White's Illusion) usually take their arguments in \alert{visual degrees} (although it can also be provided by the \alert{pixels per degree} and \alert{monitor size}), sometimes the stimuli produced will be 1 pixel or so too large for the monitor, and so fail to display via PsychoPy.\\
+~\\
+I submitted a patch to PsychoPy so it now returns a warning when this happens (the monitor will just display a black screen). But it's worth remembering if dealing with these stimuli.
+\end{frame}
 \section{Articulated Stimuli}
 
 
@@ -174,5 +180,38 @@ This is a plot of the luminance for 8-pixel wide lines measured at the observer 
 \end{figure}
 \end{frame}
 
+\begin{frame}[t]{Tube voltage hysteresis curves}
+This is a plot of luminance against tube voltage for the green tube. The black line is for decreasing voltage, and the green line for increasing voltage. Evidently, they don't match.
+\begin{figure}[c]
+\includegraphics[height=7cm]{greenhysteresis.png}
+\end{figure}
+\end{frame}
+
+
+\section{Results}
+\begin{frame}[t]{Results from articulated stimuli experiment}
+Results here
+\end{frame}
+
+\begin{frame}[t]{Tube voltage hysteresis curves}
+This is a plot of luminance against tube voltage for the red tube. The black line is for decreasing voltage, and the red line for increasing voltage. Evidently, they don't match.
+\begin{figure}[c]
+\includegraphics[height=7cm]{redhysteresis.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Tube voltage hysteresis curves}
+This is a plot of luminance against tube voltage for the blue tube. The black line is for decreasing voltage, and the blue line for increasing voltage. Evidently, they don't match.
+\begin{figure}[c]
+\includegraphics[height=7cm]{bluehysteresis.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Tube voltage hysteresis curves}
+This is a plot of luminance against tube voltage for all tube. The black line is for decreasing voltage, and the blue line for increasing voltage. Evidently, they don't match.
+\begin{figure}[c]
+\includegraphics[height=7cm]{allhysteresis.png}
+\end{figure}
+\end{frame}
 
 \end{document}

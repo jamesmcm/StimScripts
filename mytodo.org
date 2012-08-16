@@ -191,7 +191,7 @@ plot2d(((1.0/(16.0 * np.sqrt(2*np.pi))) * %e^(-0.5*(((x-511)/16)^2))), [x, 0, 10
 * DONE Take results for high variance, random, transparent set
 * DONE Remake session files
 * DONE Fix bug in myexp.py on saving data (Blue Green tubes not saved)
-* TODO Produce normal colour stimuli images
+* DONE Produce normal colour stimuli images
 * Presentation:
 ** Printing class
 ** Problems with calibration - beanplots
