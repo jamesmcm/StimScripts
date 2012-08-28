@@ -7,7 +7,8 @@ import sys
 
 sys.path.append("../achrolabutils/")
 k=0
-stimulilist=[(376, 456), (396, 476), (416, 496), (436, 516), (456, 536), (436, 476), (396, 516)]
+#stimulilist=[(376, 456), (396, 476), (416, 496), (436, 516), (456, 536), (436, 476), (396, 516)]
+stimulilist=[(376,456)]
 timeset=time.strftime("%Y%m%d_%H%M", time.localtime())
 fileoutac=open("stimulilistac"+str(timeset)+".txt", "w")
 fileoutnc=open("stimulilistnc"+str(timeset)+".txt", "w")
@@ -32,8 +33,8 @@ while k<len(stimulilist):
         rightweightsmean=stimulilist[j][1]
 
         leftpatchgray=stimulilist[k][0]
-        rightpatchgray=stimulilist[j][0]        
-        
+        rightpatchgray=stimulilist[j][0]
+
         leftgrayminus=stimulilist[k][1]-stimulilist[k][0]
         rightgrayminus=stimulilist[j][1]-stimulilist[j][0]
 
@@ -43,7 +44,7 @@ while k<len(stimulilist):
         leftweights=[]
         for i in range(1023):
             leftweights.append(((1.0/(leftweightsvar * np.sqrt(2*np.pi))) * np.exp(-0.5*(((i-leftweightsmean)/leftweightsvar)**2))))
- 
+
         rightweights=[]
         for i in range(1023):
             rightweights.append(((1.0/(rightweightsvar * np.sqrt(2*np.pi))) * np.exp(-0.5*(((i-rightweightsmean)/rightweightsvar)**2))))
@@ -71,12 +72,12 @@ while k<len(stimulilist):
         bigarray[bigarray>1023]=1023
         bigarray[bigarray<0]=0
 
-        # (N, M) = np.shape(bigarray)
-        # newarray = np.zeros((N, M, 3), dtype=np.uint8)
-        # newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
-        # newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
-        # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
-        newarray=eizoGS320.encode_np_array(bigarray)
+        (N, M) = np.shape(bigarray)
+        newarray = np.zeros((N, M, 3), dtype=np.uint8)
+        newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
+        newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
+        newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
+        #newarray=eizoGS320.encode_np_array(bigarray)
         pil_im = Image.fromarray(newarray)
         pngfile="stimuli/ac"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
 
@@ -90,18 +91,19 @@ while k<len(stimulilist):
         bigarray[bigarray>1023]=1023
         bigarray[bigarray<0]=0
 
-        # (N, M) = np.shape(bigarray)
-        # newarray = np.zeros((N, M, 3), dtype=np.uint8)
-        # newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
-        # newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
-        # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
-        newarray=eizoGS320.encode_np_array(bigarray)
+        (N, M) = np.shape(bigarray)
+        newarray = np.zeros((N, M, 3), dtype=np.uint8)
+        newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
+        newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
+        newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
+        
+        #newarray=eizoGS320.encode_np_array(bigarray)
         pil_im = Image.fromarray(newarray)
         pngfile="stimuli/nc"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
 
         fileoutnc.write("trial(['"+str(pngfile)+"', "+str(leftweightsmean)+","+str(leftweightsvar)+","+str(leftgrayminus)+","+str(rightweightsmean)+","+str(rightweightsvar)+","+str(rightgrayminus)+","+str(bggray)+","+str(seedleft)+","+str(seedright)+"], 'left', outputFile)\n")
         pil_im.save(pngfile)
-        
+
         j+=1
     k+=1
     j=0

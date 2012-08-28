@@ -199,31 +199,61 @@ This is a plot of luminance against tube voltage for the green tube. The black l
 
 \section{Results}
 \begin{frame}[t]{Results from articulated stimuli experiments}
-There were two experiments:\\
+There were two experiments. \\Both used the following set of stimuli:\\
+~\\
+\begin{tabular}{c | c c c c c | c c}
+Number & 1 & 2 & 3 & 4 & 5 & 6 & 7\\ \hline
+Infield & 356 & 376 & 396 & 416 & 436 & 416 & 376\\ \hline
+Surround & 456 & 476 & 496 & 516 & 536 & 476 & 516\\
+\end{tabular}
+\\
+~\\
+Each stimuli was matched with the others to produce 49 stimuli pairs. Each pair of stimuli (of the 49) was displayed 80 times.\\
+~\\
+When randomisation of the Mondrian was used, the Mondrians were random for all the stimuli pairs, but not for the times they were re-displayed.\\
+
+\end{frame}
+\begin{frame}[t]{Results from articulated stimuli experiments}
 
 \begin{description}
 \item[Experiment 3]:  With transparent infield (revealing Mondrian background behind).\\
+~\\
+The transparency is achieved by simply adding a constant value to the centre, such that the mean would be the infield value. \\
+~\\
 At first we used randomised Mondrians, but this made it impossible in practice (shown in later results) because the two stimuli that should be the same, appeared too differently. We will repeat the experiment without randomised Mondrians (i.e. all with the same pattern, by using the same seed values).\\
+\end{description}
+\end{frame}
+
+\begin{frame}[t]{Example of Experiment 3 stimuli}
+\begin{figure}[c]
+\includegraphics[height=5cm]{croppedac.png}
+\caption{Example of randomised Mondrian with transparency for Experiment 3.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Results from articulated stimuli experiments}
+\begin{description}
+\item[Experiment 4]:  With non-transparent infield (but still with Mondrian surround to make this evident).\\
 ~\\
 
-\item[Experiment 4]:  With non-transparent infield (but still with Mondrian surround to make this evident).\\
- This was okay for Nora's data, and actually had no regulations of regular minimality at all.
+The purpose is to investigate the effect of perceived transparency, when compared with Experiment 3.\\
+~\\
+ This was okay for the current data, and actually had no violations of regular minimality at all.
 
 \end{description}
 \end{frame}
 
-
-\begin{frame}[t]{Psychometric function: Experiment 3, VP01}
-\animategraphics[height=10cm]{12}{animations/vp01_expIII}{000}{120}
+\begin{frame}[t]{Example of Experiment 4 stimuli}
+\begin{figure}[c]
+\includegraphics[height=5cm]{croppednc.png}
+\caption{Example of randomised Mondrian without transparency for Experiment 4.}
+\end{figure}
 \end{frame}
 
-\begin{frame}[t]{Psychometric function: Experiment 3, VP02}
-\animategraphics[height=10cm]{12}{animations/vp02_expIII}{000}{120}
-\end{frame}
+\begin{frame}[t]{Experiment 3 data: VP01}
 
-\begin{frame}[t]{Experiment 3 data}
-
-VP01:
+VP01:\\
+~\\
 \begin{tabular}{c | c c c c c c c}
 ` & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline
 
@@ -242,8 +272,18 @@ VP01:
 7 & 0.938 & 0.838 & 0.775 & 0.825 & {\bf \color{red} 0.087} & 0.250 & {\bf 0.125}\\
 
 \end{tabular}
+\\
+~\\
+Every data point violates regular minimality.
+\end{frame}
 
-VP02:
+\begin{frame}[t]{Psychometric function: Experiment 3, VP01}
+\animategraphics[height=10cm]{12}{animations/vp01_expIII}{000}{120}
+\end{frame}
+
+\begin{frame}[t]{Experiment 3 data: VP02}
+VP02:\\
+~\\
 \begin{tabular}{c | c c c c c c c}
 ` & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline
 
@@ -262,23 +302,108 @@ VP02:
 7 & 1.000 & 1.000 & 0.988 & 1.000 & 0.637 & 0.925 & {\color{red} 0.362}\\
 
 \end{tabular}
-
-Too hard, why?
+\\
+~\\
+There are many violations of regular minimality.
 
 \end{frame}
-% Experiment 3 too hard show images
 
-% Nora results experiment 4:
-%        [,1]   [,2]   [,3]   [,4]   [,5]   [,6]  [,7]
-% [1,] 0.1875 0.5500 1.0000 0.7500 0.9875 0.9375 1.000
-% [2,] 0.5500 0.1875 0.9750 0.3750 0.7750 0.9750 1.000
-% [3,] 1.0000 1.0000 0.0625 0.7500 0.7750 1.0000 0.800
-% [4,] 0.9500 0.5750 0.8625 0.2000 0.4625 0.9500 0.900
-% [5,] 0.9875 0.8875 0.9375 0.3875 0.3125 0.9125 0.775
-% [6,] 0.9625 0.9750 1.0000 0.9625 0.9625 0.2500 1.000
-% [7,] 1.0000 1.0000 0.9500 0.8750 0.4000 1.0000 0.250
+\begin{frame}[t]{Psychometric function: Experiment 3, VP02}
+\animategraphics[height=10cm]{12}{animations/vp02_expIII}{000}{120}
+\end{frame}
 
 
+
+
+\begin{frame}[t]{Experiment 3 Discussion}
+Overall, there are too many violations of regular minimality to provide sufficient data for analysis.\\
+
+This is likely because the experiment, as run, was too difficult.
+
+\begin{figure}[c]
+\includegraphics[height=4cm]{croppedac.png}
+\caption{Example of the same stimuli with transparency, the infields appear somewhat different due to the randomness of the Mondrian.}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[t]{Experiment 3 Discussion}
+To solve this problem we can use the same seed for all Mondrians, and so always having the same background. \\This solves the problem of them being actually different even though the mean luminance should be the same, but gives a risk of the subjects simply learning the 7 stimuli.\\
+
+\begin{figure}[c]
+\includegraphics[height=4cm]{croppedacsame.png}
+\caption{Example of the same stimuli with transparency, using the same Mondrian seed.}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}[t]{Experiment 4 data: VP02}
+VP02:\\
+~\\
+\begin{tabular}{c | c c c c c c c}
+` & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline
+
+1 & {\bf \color{red} 0.1875} & 0.5500 & 1.0000 & 0.7500 & 0.9875 & 0.9375 & 1.000 \\
+2 & 0.5500& {\bf \color{red} 0.1875}& 0.9750& 0.3750& 0.7750& 0.9750& 1.000\\
+3 & 1.0000& 1.0000& {\bf \color{red} 0.0625}& 0.7500& 0.7750& 1.0000& 0.800\\
+4 & 0.9500& 0.5750& 0.8625& {\bf \color{red} 0.2000}& 0.4625& 0.9500& 0.900\\
+5 & 0.9875& 0.8875& 0.9375& 0.3875& {\bf \color{red} 0.3125}& 0.9125& 0.775\\
+6 & 0.9625& 0.9750& 1.0000& 0.9625& 0.9625& {\bf \color{red} 0.2500}& 1.000\\
+7 & 1.0000& 1.0000& 0.9500& 0.8750& 0.4000& 1.0000& {\bf \color{red} 0.250}\\
+
+\end{tabular}
+\\
+~\\
+There are no violations of regular minimality at all.
+\end{frame}
+
+
+My data: 
+       [,1]   [,2]   [,3]   [,4]   [,5]   [,6]   [,7]
+[1,] 0.1125 0.2250 0.9750 0.4250 0.8000 0.5750 0.9500
+[2,] 0.2375 0.1000 0.9125 0.1875 0.4875 0.7500 0.8500
+[3,] 0.9125 0.9250 0.0375 0.7875 0.6750 0.9750 0.5250
+[4,] 0.9000 0.3000 0.7250 0.1750 0.2625 0.8000 0.6125
+[5,] 0.9750 0.6000 0.3750 0.3375 0.1000 0.8875 0.2625
+[6,] 0.6875 0.7625 1.0000 0.7125 0.8250 0.2000 0.9750
+[7,] 0.9625 0.9125 0.4875 0.8625 0.3375 0.9750 0.2125
+
+
+\begin{frame}[t]{Psychometric function: Experiment 4, VP02}
+\animategraphics[height=10cm]{12}{animations/vp02_expIV}{000}{120}
+\end{frame}
+
+\begin{frame}[t]{Discussion of Experiment 4 results}
+\begin{figure}[c]
+\includegraphics[height=6cm]{mdsvp02expIV.png}
+\caption{MDS plot of the Experiment 4 results.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Discussion of Experiment 4 results}
+\begin{figure}[c]
+\includegraphics[height=6cm]{stressvp02expIV.png}
+\caption{Stress plot of the Experiment 4 results.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Discussion of Experiment 4 results}
+The two dimensional solution means that either perceived transparency is not the second dimension with the grayscale images, or that there are additional effects and the additional dimension is one of them.\\
+~\\
+However, the stress is not extremely high in the 1-D solution (but also not low), so perhaps more data may resolve the confusion.
+\end{frame}
+
+\begin{frame}[t]{Conclusion: What is to be done?}
+\begin{itemize}
+\item Repeat experiment 3 with non-random backgrounds and see if it is easy enough to obtain useful results.\\
+~\\
+\item Obtain more data from Experiment 4, perhaps with more stimuli, to check whether the two dimensional solution is the best.
+\\
+\end{itemize}
+
+{\bf Thanks for your time!}
+\end{frame}
 \begin{frame}[t]{Additional Slides}
 \end{frame}
 
