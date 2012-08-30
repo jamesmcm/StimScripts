@@ -373,6 +373,7 @@ All the other stimuli classes inherit from this.</div></blockquote>
 <dt id="stimuliclass.Cornsweet">
 <em class="property">class </em><tt class="descclassname">stimuliclass.</tt><tt class="descname">Cornsweet</tt><big>(</big><em>usingeizo=False</em>, <em>measuring=False</em>, <em>calibrate=True</em>, <em>prefix='data'</em>, <em>waittime=0.1</em>, <em>visualdegrees=None</em>, <em>ppd=128</em>, <em>contrast=1</em>, <em>ramp_width=3</em>, <em>exponent=2.75</em>, <em>mean_lum=511</em>, <em>pngfile=None</em>, <em>encode=True</em><big>)</big><a class="reference internal" href="_modules/stimuliclass.html#Cornsweet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stimuliclass.Cornsweet" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
+<div><blockquote>
 <div><p>This class is a wrapper for the Cornsweet generation code from TU Berlin. It produces a form of the Cornsweet illusion to PNG if no PNG file is provided in the pngfile argument, otherwise it will display the stimuli provided. Still need to fix the unencoded version.</p>
 <dl class="docutils">
 <dt>TU Berlin notes:</dt>
@@ -468,7 +469,10 @@ X is the distance to the edge, w is the width of the ramp, a is a variable deter
 <blockquote>
 <div><p><strong>References (from TU Berlin)</strong>:</p>
 <p>The formula and default values are taken from Boyaci, H., Fang, F., Murray, S.O., Kersten, D. (2007). Responses to Lightness Variations in Early Human Visual Cortex. Current Biology 17, 989-993.</p>
+<p><strong>Example Image</strong>:</p>
 </div></blockquote>
+</div></blockquote>
+<img alt="_images/cornsweet20120814_1705.png" src="_images/cornsweet20120814_1705.png" style="width: 200px; height: 200px;" />
 <dl class="method">
 <dt id="stimuliclass.Cornsweet.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.Cornsweet.checkCalibrate" title="Permalink to this definition">¶</a></dt>
@@ -732,8 +736,9 @@ X is the distance to the edge, w is the width of the ramp, a is a variable deter
 
 <dl class="class">
 <dt id="stimuliclass.Mondrian">
-<em class="property">class </em><tt class="descclassname">stimuliclass.</tt><tt class="descname">Mondrian</tt><big>(</big><em>usingeizo=False</em>, <em>measuring=False</em>, <em>calibrate=True</em>, <em>prefix='data'</em>, <em>waittime=0.1</em>, <em>highgray=1023</em>, <em>lowgray=0</em>, <em>step=1</em>, <em>meanlength=5</em>, <em>weights=None</em>, <em>accuracy=0.05</em>, <em>max_cycles=1000</em>, <em>write=False</em>, <em>pngfile=None</em>, <em>imagesize=None</em>, <em>encode=True</em>, <em>saveimage=True</em><big>)</big><a class="reference internal" href="_modules/stimuliclass.html#Mondrian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stimuliclass.Mondrian" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">stimuliclass.</tt><tt class="descname">Mondrian</tt><big>(</big><em>usingeizo=False</em>, <em>measuring=False</em>, <em>calibrate=True</em>, <em>prefix='data'</em>, <em>waittime=0.1</em>, <em>highgray=1023</em>, <em>lowgray=0</em>, <em>step=1</em>, <em>meanlength=5</em>, <em>weights=None</em>, <em>accuracy=0.05</em>, <em>max_cycles=1000</em>, <em>write=False</em>, <em>seed=1</em>, <em>pngfile=None</em>, <em>imagesize=None</em>, <em>encode=True</em>, <em>saveimage=True</em><big>)</big><a class="reference internal" href="_modules/stimuliclass.html#Mondrian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stimuliclass.Mondrian" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
+<div><blockquote>
 <div><p>This class is a wrapper for the Mondrian generation code from TU Berlin. It produces a Mondrian to a  PNG if no PNG file is provided in the pngfile argument, otherwise it will display the Mondrian with run().</p>
 <dl class="docutils">
 <dt>TU Berlin notes:</dt>
@@ -821,6 +826,16 @@ X is the distance to the edge, w is the width of the ramp, a is a variable deter
 <td>1000</td>
 <td>The maximal number of mondrians created before the function aborts and returns the best mondrian so far.</td>
 </tr>
+<tr class="row-even"><td>write</td>
+<td>Boolean</td>
+<td>False</td>
+<td>Whether the Mondrian array should be saved, usually is False.</td>
+</tr>
+<tr class="row-odd"><td>seed</td>
+<td>Hashable Object</td>
+<td>1</td>
+<td>This allows the seed to be set, so multiple Mondrians can be generated with the same background.</td>
+</tr>
 <tr class="row-even"><td>pngfile</td>
 <td>String</td>
 <td>None</td>
@@ -843,6 +858,15 @@ X is the distance to the edge, w is the width of the ramp, a is a variable deter
 </tr>
 </tbody>
 </table>
+<blockquote>
+<div><strong>Example Image</strong>:</div></blockquote>
+</div></blockquote>
+<img alt="_images/mondrian20120713_1126.png" src="_images/mondrian20120713_1126.png" style="width: 200px; height: 200px;" />
+<p><strong>Code Example</strong>:
+To produce encoded unweighted Mondrian stimuli for eizo monitor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">=</span><span class="n">Mondrian</span><span class="p">(</span><span class="n">usingeizo</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="stimuliclass.Mondrian.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.Mondrian.checkCalibrate" title="Permalink to this definition">¶</a></dt>
@@ -1468,6 +1492,7 @@ Two stimuli, superimposed mean luminance is equal to background. At high enough 
 <dt id="stimuliclass.Todorovic">
 <em class="property">class </em><tt class="descclassname">stimuliclass.</tt><tt class="descname">Todorovic</tt><big>(</big><em>usingeizo=False</em>, <em>measuring=False</em>, <em>calibrate=True</em>, <em>prefix='data'</em>, <em>waittime=0.1</em>, <em>visualdegrees=None</em>, <em>ppd=128</em>, <em>contrast=1</em>, <em>ramp_width=3</em>, <em>exponent=2.75</em>, <em>mean_lum=511</em>, <em>vert_rep=3</em>, <em>horz_rep=5</em>, <em>pngfile=None</em>, <em>encode=True</em><big>)</big><a class="reference internal" href="_modules/stimuliclass.html#Todorovic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stimuliclass.Todorovic" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
+<div><blockquote>
 <div><p>This class is a wrapper for the Todorovic checkerboard generation code from TU Berlin. It produces a form of the Torodovic checkerboard illusion to PNG if no PNG file is provided in the pngfile argument, otherwise it will display the stimuli provided. Still need to fix the unencoded version.</p>
 <p>Note that it works by first producing an appropriate Cornsweet stimulus and then repeating this.</p>
 <dl class="docutils">
@@ -1565,8 +1590,17 @@ Two stimuli, superimposed mean luminance is equal to background. At high enough 
 </tbody>
 </table>
 <blockquote>
-<div><strong>References (from TU Berlin)</strong>:
-Todorovic, D. (1987). The Craik-O&#8217;Brien-Cornsweet effect: new varieties and their theoretical implications. Perception &amp; psychophysics, 42(6), 545-60, Plate 4.</div></blockquote>
+<div><p><strong>References (from TU Berlin)</strong>:
+Todorovic, D. (1987). The Craik-O&#8217;Brien-Cornsweet effect: new varieties and their theoretical implications. Perception &amp; psychophysics, 42(6), 545-60, Plate 4.</p>
+<p><strong>Example Image</strong>:</p>
+</div></blockquote>
+</div></blockquote>
+<img alt="_images/todorovic20120814_1705.png" src="_images/todorovic20120814_1705.png" style="width: 200px; height: 200px;" />
+<p><strong>Code Example</strong>:
+To produce encoded Todorovic stimuli for eizo monitor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">=</span><span class="n">Todorovic</span><span class="p">(</span><span class="n">usingeizo</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="stimuliclass.Todorovic.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.Todorovic.checkCalibrate" title="Permalink to this definition">¶</a></dt>
@@ -1657,6 +1691,7 @@ Todorovic, D. (1987). The Craik-O&#8217;Brien-Cornsweet effect: new varieties an
 <dt id="stimuliclass.WhiteIllusion">
 <em class="property">class </em><tt class="descclassname">stimuliclass.</tt><tt class="descname">WhiteIllusion</tt><big>(</big><em>usingeizo=False</em>, <em>measuring=False</em>, <em>calibrate=True</em>, <em>prefix='data'</em>, <em>waittime=0.1</em>, <em>kind='bmcc'</em>, <em>visualdegrees=None</em>, <em>ppd=128</em>, <em>contrast=1</em>, <em>frequency=5</em>, <em>mean_lum=511</em>, <em>start='high'</em>, <em>pngfile=None</em>, <em>encode=True</em><big>)</big><a class="reference internal" href="_modules/stimuliclass.html#WhiteIllusion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stimuliclass.WhiteIllusion" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
+<div><blockquote>
 <div><p>This class is a wrapper for the White&#8217;s Illusion generation code from TU Berlin. It produces a form of the White&#8217;s illusion on a square wave to PNG if no PNG file is provided in the pngfile argument, otherwise it will display the stimuli provided. Still need to fix the unencoded version.</p>
 <p>Produces both kind=&#8221;bmcc&#8221;: in the style used by Blakeslee and McCourt (1999), and kind=&#8221;gil&#8221;: in the style used by Gilchrist (2006, p. 281).</p>
 <p>This class inherits from BaseMonitorTesting.</p>
@@ -1753,7 +1788,13 @@ Todorovic, D. (1987). The Craik-O&#8217;Brien-Cornsweet effect: new varieties an
 <div><p><strong>References (from TU Berlin)</strong>:</p>
 <p>Blakeslee B, McCourt ME (1999). A multiscale spatial filtering account of the White effect, simultaneous brightness contrast and grating induction. Vision research 39(26):4361-77.</p>
 <p>Gilchrist A (2006). Seeing Black and White. New York, New York, USA: Oxford University Press.</p>
+<p><strong>Example Image</strong>:</p>
 </div></blockquote>
+</div></blockquote>
+<p>Gilchrist:</p>
+<img alt="_images/whiteillusiongil20120815_1138.png" src="_images/whiteillusiongil20120815_1138.png" style="width: 200px; height: 200px;" />
+<p>Blakeslee, McCourt:</p>
+<img alt="_images/whiteillusionbmcc20120814_1705.png" src="_images/whiteillusionbmcc20120814_1705.png" style="width: 200px; height: 200px;" />
 <dl class="method">
 <dt id="stimuliclass.WhiteIllusion.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.WhiteIllusion.checkCalibrate" title="Permalink to this definition">¶</a></dt>

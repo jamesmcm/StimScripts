@@ -48,13 +48,18 @@ class BaseMonitorTesting():
         if usingeizo==False:
             self.monitorsize=[1024,768]
             self.monitornum=0
-            self.EyeOne = EyeOne.EyeOne(dummy=True) # EyeOne Object dummy
-
+            try:
+                self.EyeOne = EyeOne.EyeOne(dummy=True) # EyeOne Object dummy
+            except:
+                self.EyeOne = eyeone.EyeOne(dummy=True)
         else:
-            self.monitorsize=[1024, 1536] #size of Eizo screen (half actualy monitor width)
+            #self.monitorsize=[1024, 1536] #size of Eizo screen (half actualy monitor width)
+            self.monitorsize=[2048, 1536] #size of Eizo screen (half actualy monitor width)
             self.monitornum=1
-            self.EyeOne = eyeone.EyeOne(dummy=False) # Actual EyeOne Object
-
+            try:
+                self.EyeOne = eyeone.EyeOne(dummy=False) # Actual EyeOne Object
+            except:
+                self.EyeOne = EyeOne.EyeOne(dummy=False) # Actual EyeOne Object
 
         if measuring==True:
             if(self.EyeOne.I1_SetOption(EyeOneConstants.I1_MEASUREMENT_MODE,
@@ -267,6 +272,17 @@ class Mondrian(BaseMonitorTesting):
    saveimage          Boolean         True        Whether to save an image of the generated Mondrian. Set to false if generating to inset in another image.
    ================ ================= =========== ========================================================================================================================
 
+    **Example Image**:
+
+.. image:: mondrian20120713_1126.png
+    :height: 200px
+    :width: 200px
+
+**Code Example**:
+To produce encoded unweighted Mondrian stimuli for eizo monitor::
+   test=Mondrian(usingeizo=True, encode=True)
+
+   
     '''
 
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, highgray=1023, lowgray=0, step=1, meanlength=5, weights=None, accuracy=0.05, max_cycles=1000, write=False, seed=1, pngfile=None, imagesize=None, encode=True, saveimage=True):
@@ -295,9 +311,9 @@ class Mondrian(BaseMonitorTesting):
                     newarray[:,:,2]=np.uint8(nparray[:,:]/4)
                     #nparray.dtype = np.uint8
                     nparray=newarray
-                    pil_im = Image.fromarray(nparray)
-                    self.pngfile="mondrian"+time.strftime("%Y%m%d_%H%M")+".png"
-                    pil_im.save(self.pngfile)
+                pil_im = Image.fromarray(nparray)
+                self.pngfile="mondrian"+time.strftime("%Y%m%d_%H%M")+".png"
+                pil_im.save(self.pngfile)
 
         else:
             self.pngfile=pngfile
@@ -307,6 +323,7 @@ class Mondrian(BaseMonitorTesting):
         self.runningLoop()
 
 class Cornsweet(BaseMonitorTesting):
+
     """
     This class is a wrapper for the Cornsweet generation code from TU Berlin. It produces a form of the Cornsweet illusion to PNG if no PNG file is provided in the pngfile argument, otherwise it will display the stimuli provided. Still need to fix the unencoded version.
 
@@ -344,7 +361,13 @@ class Cornsweet(BaseMonitorTesting):
 
     The formula and default values are taken from Boyaci, H., Fang, F., Murray, S.O., Kersten, D. (2007). Responses to Lightness Variations in Early Human Visual Cortex. Current Biology 17, 989-993.
 
+    **Example Image**:
+.. image:: cornsweet20120814_1705.png
+    :height: 200px
+    :width: 200px
+
    """
+
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, visualdegrees=None, ppd=128, contrast=1, ramp_width=3, exponent=2.75, mean_lum=511, pngfile=None, encode=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
         self.grayvals=[mean_lum, exponent]
@@ -375,6 +398,7 @@ class Cornsweet(BaseMonitorTesting):
         self.runningLoop()
 
 class Todorovic(BaseMonitorTesting):
+
     """
     This class is a wrapper for the Todorovic checkerboard generation code from TU Berlin. It produces a form of the Torodovic checkerboard illusion to PNG if no PNG file is provided in the pngfile argument, otherwise it will display the stimuli provided. Still need to fix the unencoded version.
 
@@ -411,7 +435,19 @@ class Todorovic(BaseMonitorTesting):
     **References (from TU Berlin)**:
     Todorovic, D. (1987). The Craik-O'Brien-Cornsweet effect: new varieties and their theoretical implications. Perception & psychophysics, 42(6), 545-60, Plate 4.
 
+    **Example Image**:
+
+.. image:: todorovic20120814_1705.png
+    :height: 200px
+    :width: 200px
+
+**Code Example**:
+To produce encoded Todorovic stimuli for eizo monitor::
+   test=Todorovic(usingeizo=True, encode=True)
+
+
     """
+
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, visualdegrees=None, ppd=128, contrast=1, ramp_width=3, exponent=2.75, mean_lum=511, vert_rep=3, horz_rep=5, pngfile=None, encode=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
         self.grayvals=[mean_lum, exponent]
@@ -443,6 +479,7 @@ class Todorovic(BaseMonitorTesting):
         self.runningLoop()
 
 class WhiteIllusion(BaseMonitorTesting):
+
     """
     This class is a wrapper for the White's Illusion generation code from TU Berlin. It produces a form of the White's illusion on a square wave to PNG if no PNG file is provided in the pngfile argument, otherwise it will display the stimuli provided. Still need to fix the unencoded version.
 
@@ -479,7 +516,22 @@ class WhiteIllusion(BaseMonitorTesting):
 
     Gilchrist A (2006). Seeing Black and White. New York, New York, USA: Oxford University Press.
 
+    **Example Image**:
+
+Gilchrist:
+
+.. image:: whiteillusiongil20120815_1138.png
+   :height: 200px
+   :width: 200px
+
+Blakeslee, McCourt:
+
+.. image:: whiteillusionbmcc20120814_1705.png
+   :height: 200px
+   :width: 200px
+
    """
+
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, kind="bmcc", visualdegrees=None, ppd=128, contrast=1, frequency=5, mean_lum=511, start='high', pngfile=None, encode=True):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
         self.grayvals=[mean_lum, contrast]

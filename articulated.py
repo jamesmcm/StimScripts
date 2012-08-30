@@ -7,8 +7,7 @@ import sys
 
 sys.path.append("../achrolabutils/")
 k=0
-#stimulilist=[(376, 456), (396, 476), (416, 496), (436, 516), (456, 536), (436, 476), (396, 516)]
-stimulilist=[(376,456)]
+stimulilist=[(376, 456), (396, 476), (416, 496), (436, 516), (456, 536), (436, 476), (396, 516)]
 timeset=time.strftime("%Y%m%d_%H%M", time.localtime())
 fileoutac=open("stimulilistac"+str(timeset)+".txt", "w")
 fileoutnc=open("stimulilistnc"+str(timeset)+".txt", "w")
@@ -72,12 +71,12 @@ while k<len(stimulilist):
         bigarray[bigarray>1023]=1023
         bigarray[bigarray<0]=0
 
-        (N, M) = np.shape(bigarray)
-        newarray = np.zeros((N, M, 3), dtype=np.uint8)
-        newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
-        newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
-        newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
-        #newarray=eizoGS320.encode_np_array(bigarray)
+        # (N, M) = np.shape(bigarray)
+        # newarray = np.zeros((N, M, 3), dtype=np.uint8)
+        # newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
+        # newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
+        # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
+        newarray=eizoGS320.encode_np_array(bigarray)
         pil_im = Image.fromarray(newarray)
         pngfile="stimuli/ac"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
 
@@ -91,13 +90,12 @@ while k<len(stimulilist):
         bigarray[bigarray>1023]=1023
         bigarray[bigarray<0]=0
 
-        (N, M) = np.shape(bigarray)
-        newarray = np.zeros((N, M, 3), dtype=np.uint8)
-        newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
-        newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
-        newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
-        
-        #newarray=eizoGS320.encode_np_array(bigarray)
+        # (N, M) = np.shape(bigarray)
+        # newarray = np.zeros((N, M, 3), dtype=np.uint8)
+        # newarray[:,:,0]=np.uint8(bigarray[:,:]/4)
+        # newarray[:,:,1]=np.uint8(bigarray[:,:]/4)
+        # newarray[:,:,2]=np.uint8(bigarray[:,:]/4)
+        newarray=eizoGS320.encode_np_array(bigarray)
         pil_im = Image.fromarray(newarray)
         pngfile="stimuli/nc"+str(leftweightsmean)+"_"+str(leftweightsvar)+"_"+str(leftgrayminus)+"_"+str(rightweightsmean)+"_"+str(rightweightsvar)+"_"+str(rightgrayminus)+"_"+str(bggray)+"_"+str(seedleft)+"_"+str(seedright)+".png"
 

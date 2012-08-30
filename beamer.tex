@@ -147,7 +147,7 @@ But {\bf simply replace the stimuli directly}.
 \section{Some problems}
 \begin{frame}[t]{Some problems}
 \begin{description}
-\item[Re-calibration:] ~\\Re-measurement after re-calibration consistently produces different results.\\
+\item[Re-calibration:] ~\\Re-measurement after re-calibration of the photometer consistently produces different results.\\
 ~\\
 
 \item[Lines stimulus:] ~\\The lines stimuli are significantly brigher when displayed horizontally, for small pixel widths ($\sim <8$).\\
@@ -192,7 +192,14 @@ This is a plot of the luminance for 8-pixel wide lines measured at the observer 
 \begin{frame}[t]{Tube voltage hysteresis curves}
 This is a plot of luminance against tube voltage for the green tube. The black line is for decreasing voltage, and the green line for increasing voltage. Evidently, they don't match.
 \begin{figure}[c]
-\includegraphics[height=7cm]{greenhysteresis.png}
+\includegraphics[height=7cm]{greenhfull.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Tube voltage hysteresis curves}
+This may be due to the resetting of the tubes, as it is known that it takes about 4 hours to reach maximum luminance.
+\begin{figure}[c]
+\includegraphics[height=7cm]{timetubes.png}
 \end{figure}
 \end{frame}
 
@@ -212,6 +219,11 @@ Each stimuli was matched with the others to produce 49 stimuli pairs. Each pair 
 ~\\
 When randomisation of the Mondrian was used, the Mondrians were random for all the stimuli pairs, but not for the times they were re-displayed.\\
 
+\end{frame}
+\begin{frame}[t]{Infield vs Surround graph}
+\begin{figure}[c]
+\includegraphics[height=7cm]{infieldsurround.png}
+\end{figure}
 \end{frame}
 \begin{frame}[t]{Results from articulated stimuli experiments}
 
@@ -337,6 +349,41 @@ To solve this problem we can use the same seed for all Mondrians, and so always 
 
 \end{frame}
 
+\begin{frame}[t]{Experiment 4 data: VP01}
+VP01:\\
+~\\
+\begin{tabular}{c | c c c c c c c}
+` & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \hline 
+1& {\bf \color{red} 0.1125}& 0.2250& 0.9750& 0.4250& 0.8000& 0.5750& 0.9500\\
+2& 0.2375& {\bf \color{red} 0.1000}& 0.9125& 0.1875& 0.4875& 0.7500& 0.8500\\
+3& 0.9125& 0.9250& {\bf \color{red} 0.0375}& 0.7875& 0.6750& 0.9750& 0.5250\\
+4& 0.9000& 0.3000& 0.7250& {\bf \color{red} 0.1750}& 0.2625& 0.8000& 0.6125\\
+5& 0.9750& 0.6000& 0.3750& 0.3375& {\bf \color{red} 0.1000}& 0.8875& 0.2625\\
+6& 0.6875& 0.7625& 1.0000& 0.7125& 0.8250& {\bf \color{red} 0.2000}& 0.9750\\
+7& 0.9625& 0.9125& 0.4875& 0.8625& 0.3375& 0.9750& {\bf \color{red} 0.2125}\\
+\end{tabular}
+\\
+~\\
+There are no violations of regular minimality at all.
+\end{frame}
+
+\begin{frame}[t]{Psychometric function: Experiment 4, VP01}
+\animategraphics[height=10cm]{12}{animations/vp01_expIV}{000}{120}
+\end{frame}
+
+\begin{frame}[t]{Discussion of Experiment 4 results}
+\begin{figure}[c]
+\includegraphics[height=6cm]{mdsvp01expIV.png}
+\caption{MDS plot of the Experiment 4 results for VP01.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Discussion of Experiment 4 results}
+\begin{figure}[c]
+\includegraphics[height=6cm]{stressvp01expIV.png}
+\caption{Stress plot of the Experiment 4 results for VP01.}
+\end{figure}
+\end{frame}
 
 \begin{frame}[t]{Experiment 4 data: VP02}
 VP02:\\
@@ -355,19 +402,11 @@ VP02:\\
 \end{tabular}
 \\
 ~\\
-There are no violations of regular minimality at all.
+There are no violations of regular minimality at all. Although quite a few 1's, which means that the experiment may have been too easy.
 \end{frame}
 
 
-My data: 
-       [,1]   [,2]   [,3]   [,4]   [,5]   [,6]   [,7]
-[1,] 0.1125 0.2250 0.9750 0.4250 0.8000 0.5750 0.9500
-[2,] 0.2375 0.1000 0.9125 0.1875 0.4875 0.7500 0.8500
-[3,] 0.9125 0.9250 0.0375 0.7875 0.6750 0.9750 0.5250
-[4,] 0.9000 0.3000 0.7250 0.1750 0.2625 0.8000 0.6125
-[5,] 0.9750 0.6000 0.3750 0.3375 0.1000 0.8875 0.2625
-[6,] 0.6875 0.7625 1.0000 0.7125 0.8250 0.2000 0.9750
-[7,] 0.9625 0.9125 0.4875 0.8625 0.3375 0.9750 0.2125
+
 
 
 \begin{frame}[t]{Psychometric function: Experiment 4, VP02}
@@ -391,15 +430,17 @@ My data:
 \begin{frame}[t]{Discussion of Experiment 4 results}
 The two dimensional solution means that either perceived transparency is not the second dimension with the grayscale images, or that there are additional effects and the additional dimension is one of them.\\
 ~\\
-However, the stress is not extremely high in the 1-D solution (but also not low), so perhaps more data may resolve the confusion.
+However, the stress is not extremely high in the 1-D solution (but also not low), so perhaps more data may resolve the confusion. I.e. for VP01 a 1-dimensional solution is completely reasonable.
 \end{frame}
 
 \begin{frame}[t]{Conclusion: What is to be done?}
 \begin{itemize}
 \item Repeat experiment 3 with non-random backgrounds and see if it is easy enough to obtain useful results.\\
 ~\\
-\item Obtain more data from Experiment 4, perhaps with more stimuli, to check whether the two dimensional solution is the best.
-\\
+\item Obtain more data from Experiment 4, perhaps with more stimuli, to check whether the two dimensional or one dimensional solution is more fitting.\\
+~\\
+\item Repeat tube hysteresis curves but going up and down repeatedly in one sitting (one calibration of the photometer, ensure the tubes had at least 4 hours at maximum voltage)
+
 \end{itemize}
 
 {\bf Thanks for your time!}
@@ -426,6 +467,24 @@ This is a plot of luminance against tube voltage for the blue tube. The black li
 This is a plot of luminance against tube voltage for all tube. The black line is for decreasing voltage, and the blue line for increasing voltage. Evidently, they don't match.
 \begin{figure}[c]
 \includegraphics[height=7cm]{allhysteresis.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Psychometric function: Experiment 3, VP02}
+\animategraphics[height=10cm]{12}{animations/vp02_expIII}{000}{120}
+\end{frame}
+
+\begin{frame}[t]{Discussion of Experiment 3 results}
+\begin{figure}[c]
+\includegraphics[height=6cm]{mdsvp02_expIII.png}
+\caption{MDS plot of the Experiment 3 results for VP02.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]{Discussion of Experiment 3 results}
+\begin{figure}[c]
+\includegraphics[height=6cm]{stressvp02_expIII.png}
+\caption{Stress plot of the Experiment 3 results for VP02.}
 \end{figure}
 \end{frame}
 
