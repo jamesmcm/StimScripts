@@ -1,62 +1,14 @@
 
 ====================================
- Scripts contained in *StimScripts*
+ Useful scripts
 ====================================
 
-`crttest.py`
-~~~~~~~~~~~~
-
-.. automodule:: crttest
-   :members:
-   :undoc-members:
-   :inherited-members:
-
-`gamma.py`
-~~~~~~~~~~~~~~~~~~
-
-.. automodule:: gamma
-   :members:
-   :undoc-members:
-   :inherited-members:
-
-`lines.py`
+`articulated.py`
 ~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: lines
+Produce articulated stimuli for experiments. Produces stimuli both with and without articulated (transparent) infields. Modify the seed variable to change whether the backgrounds are random or not = for non-random use a constant, for random use the time plus a random number.
+
+.. automodule:: articulated
    :members:
    :undoc-members:
    :inherited-members:
-
-`prodstim.py`
-~~~~~~~~~~~~~~~~~
-
-.. automodule:: prodstim
-   :members:
-   :undoc-members:
-   :inherited-members:
-
-`showstim.py`
-~~~~~~~~~~~~~~~~~
-
-.. automodule:: showstim
-   :members:
-   :undoc-members:
-   :inherited-members:
-
-`singrating.py`
-~~~~~~~~~~~~~~~
-
-.. automodule:: singrating
-   :members:
-   :undoc-members:
-   :inherited-members:
-
-`testmond.py`
-~~~~~~~~~~~~~~
-
-.. automodule:: testmond
-   :members:
-   :undoc-members:
-   :inherited-members:
-
-

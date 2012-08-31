@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Scripts contained in StimScripts &mdash; StimScripts 0.1 documentation</title>
+    <title>Useful scripts &mdash; StimScripts 0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -54,47 +54,12 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="scripts-contained-in-stimscripts">
-<h1>Scripts contained in <em>StimScripts</em><a class="headerlink" href="#scripts-contained-in-stimscripts" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-crttest">
-<span id="crttest-py"></span><h2><cite>crttest.py</cite><a class="headerlink" href="#module-crttest" title="Permalink to this headline">¶</a></h2>
-<p>crttest.py :
-Produces a patch of a certain luminance in the centre of the screen, and modulates the surround according to a sin function.</p>
-<p>TUB notes:
-Small region test at the centre of CRT, check min, middle, max, luminance.  Then,sin wave modulation of the rest of the screen while measuring centre. This is a powersupply issue. Modulate sin wave frequency to measure responsiveness. Square waves are even harsher on the CRT. Allowing naked eye testing is also good, since the frequency of modulation may be intense for crappy photometers.</p>
-</div>
-<div class="section" id="module-gamma">
-<span id="gamma-py"></span><h2><cite>gamma.py</cite><a class="headerlink" href="#module-gamma" title="Permalink to this headline">¶</a></h2>
-<p>gamma.py :
-Compare luminance of big patch and small patch, on CRT big patch should always be less bright. Can use up and down arrow keys to modify the size of the patch whilst running.</p>
-</div>
-<div class="section" id="module-lines">
-<span id="lines-py"></span><h2><cite>lines.py</cite><a class="headerlink" href="#module-lines" title="Permalink to this headline">¶</a></h2>
-<p>lines.py :</p>
-<p>Create series of lines, swap between horizontal and vertical - check for change in overall luminance. Modify line width in pixels with linewidth variable.</p>
-</div>
-<div class="section" id="module-prodstim">
-<span id="prodstim-py"></span><h2><cite>prodstim.py</cite><a class="headerlink" href="#module-prodstim" title="Permalink to this headline">¶</a></h2>
-<p>prodstim.py:</p>
-<p>Script used to produce correctly-encoded images of different stimuli from the TUBvision code, for presentation on the black and white monitor.</p>
-</div>
-<div class="section" id="showstim-py">
-<h2><cite>showstim.py</cite><a class="headerlink" href="#showstim-py" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-singrating">
-<span id="singrating-py"></span><h2><cite>singrating.py</cite><a class="headerlink" href="#module-singrating" title="Permalink to this headline">¶</a></h2>
-<p>singrating.py :
-Produces a sin-wave based stimuli across the screen, which is then shifted to anti-phase and re-presented rapidly.</p>
-<dl class="docutils">
-<dt>TUB notes:</dt>
-<dd>Two stimuli, superimposed mean luminance is equal to background. At high enough frequencies, the stimuli should be invisible. The photometer will probably be fine with this, but if one&#8217;s eyes are moving too much, it will look terrible. Look through a tube and the effect will probably go away. Anyway, the point is, is that this is a great test for frame dropping.</dd>
-</dl>
-</div>
-<div class="section" id="module-testmond">
-<span id="testmond-py"></span><h2><cite>testmond.py</cite><a class="headerlink" href="#module-testmond" title="Permalink to this headline">¶</a></h2>
-<p>testmond.py:
-Produces Mondrian stimuli using functions from TU Berlin&#8217;s TUBvision code. The functions called are in TUBvision&#8217;s mondrian.py</p>
-</div>
+  <div class="section" id="useful-scripts">
+<h1>Useful scripts<a class="headerlink" href="#useful-scripts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="articulated-py">
+<h2><cite>articulated.py</cite><a class="headerlink" href="#articulated-py" title="Permalink to this headline">¶</a></h2>
+<p>Produce articulated stimuli for experiments. Produces stimuli both with and without articulated (transparent) infields. Modify the seed variable to change whether the backgrounds are random or not = for non-random use a constant, for random use the time plus a random number.</p>
+<span class="target" id="module-articulated"></span></div>
 </div>
 
 
@@ -105,14 +70,8 @@ Produces Mondrian stimuli using functions from TU Berlin&#8217;s TUBvision code.
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Scripts contained in <em>StimScripts</em></a><ul>
-<li><a class="reference internal" href="#module-crttest"><cite>crttest.py</cite></a></li>
-<li><a class="reference internal" href="#module-gamma"><cite>gamma.py</cite></a></li>
-<li><a class="reference internal" href="#module-lines"><cite>lines.py</cite></a></li>
-<li><a class="reference internal" href="#module-prodstim"><cite>prodstim.py</cite></a></li>
-<li><a class="reference internal" href="#showstim-py"><cite>showstim.py</cite></a></li>
-<li><a class="reference internal" href="#module-singrating"><cite>singrating.py</cite></a></li>
-<li><a class="reference internal" href="#module-testmond"><cite>testmond.py</cite></a></li>
+<li><a class="reference internal" href="#">Useful scripts</a><ul>
+<li><a class="reference internal" href="#articulated-py"><cite>articulated.py</cite></a></li>
 </ul>
 </li>
 </ul>

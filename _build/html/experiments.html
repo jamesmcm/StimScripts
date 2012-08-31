@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Experiments &mdash; StimScripts 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="StimScripts 0.1 documentation" href="index.html" />
+    <link rel="next" title="Known Issues" href="knownissues.html" />
+    <link rel="prev" title="Measurements" href="measurements.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="knownissues.html" title="Known Issues"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="measurements.html" title="Measurements"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">StimScripts 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="experiments">
+<h1>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-two-experiments">
+<h2>The two experiments<a class="headerlink" href="#the-two-experiments" title="Permalink to this headline">¶</a></h2>
+<p>Experiment 3:</p>
+<blockquote>
+<div><p>With transparent infield (revealing Mondrian
+background behind).</p>
+<p>The transparency is achieved by simply adding a
+constant value to the centre, such that the mean
+would be the infield value.</p>
+<p>At first we used randomised Mondrians, but this
+made it impossible in practice (shown in later results)
+because the two stimuli that should be the same,
+appeared too differently. We will repeat the
+experiment without randomised Mondrians (i.e. all
+with the same pattern, by using the same seed
+values).</p>
+</div></blockquote>
+<p>Experiment 4:</p>
+<blockquote>
+<div><p>With non-transparent infield (but still with
+Mondrian surround to make this evident).</p>
+<p>The purpose is to investigate the effect of perceived
+transparency, when compared with Experiment 3.</p>
+<p>This was okay for the current data, and actually had
+no violations of regular minimality at all.</p>
+</div></blockquote>
+</div>
+<div class="section" id="stimuli-used">
+<h2>Stimuli used:<a class="headerlink" href="#stimuli-used" title="Permalink to this headline">¶</a></h2>
+<p>Both experiments used the following set of stimuli:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Number</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="row-even"><td>Infield</td>
+<td>356</td>
+<td>376</td>
+<td>396</td>
+<td>416</td>
+<td>436</td>
+<td>416</td>
+<td>376</td>
+</tr>
+<tr class="row-odd"><td>Surround</td>
+<td>456</td>
+<td>476</td>
+<td>496</td>
+<td>516</td>
+<td>536</td>
+<td>476</td>
+<td>516</td>
+</tr>
+</tbody>
+</table>
+<p>Each stimuli was matched with the others to produce 49 stimuli pairs. Each pair of stimuli (of the 49) was displayed 80 times.</p>
+<p>When randomisation of the Mondrian was used, the Mondrians were random for all the stimuli pairs, but not for the times they were re-displayed.</p>
+<p><em>Plot of surround/infield ratios:</em></p>
+<img alt="_images/infieldsurround.png" src="_images/infieldsurround.png" />
+</div>
+<div class="section" id="example-stimuli">
+<h2>Example stimuli:<a class="headerlink" href="#example-stimuli" title="Permalink to this headline">¶</a></h2>
+<p><em>Example stimuli for Experiment 3 (with randomised Mondrians):</em></p>
+<img alt="_images/croppedac.png" src="_images/croppedac.png" />
+<p><em>Example stimuli for Experiment 4:</em></p>
+<img alt="_images/croppednc.png" src="_images/croppednc.png" />
+</div>
+<div class="section" id="data-experiment-3">
+<h2>Data, Experiment 3:<a class="headerlink" href="#data-experiment-3" title="Permalink to this headline">¶</a></h2>
+<p><em>VP01</em>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="16%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a href="#id1"><span class="problematic" id="id2">`</span></a></td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>0.163</td>
+<td>0.350</td>
+<td>0.312</td>
+<td>0.988</td>
+<td>0.787</td>
+<td>0.988</td>
+<td>1.000</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>0.025</td>
+<td>0.062</td>
+<td>0.050</td>
+<td>0.200</td>
+<td>0.938</td>
+<td>0.537</td>
+<td>0.938</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>0.012</td>
+<td>0.012</td>
+<td>0.112</td>
+<td>0.100</td>
+<td>0.662</td>
+<td>0.688</td>
+<td>0.938</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>0.225</td>
+<td>0.125</td>
+<td>0.050</td>
+<td>0.175</td>
+<td>0.463</td>
+<td>0.625</td>
+<td>0.600</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>0.650</td>
+<td>0.263</td>
+<td>0.438</td>
+<td>0.225</td>
+<td>0.175</td>
+<td>0.163</td>
+<td>0.487</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>0.287</td>
+<td>0.150</td>
+<td>0.325</td>
+<td>0.125</td>
+<td>0.375</td>
+<td>0.200</td>
+<td>0.125</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>0.938</td>
+<td>0.838</td>
+<td>0.775</td>
+<td>0.825</td>
+<td>0.087</td>
+<td>0.250</td>
+<td>0.125</td>
+</tr>
+</tbody>
+</table>
+<p><em>VP02</em>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="3%" />
+<col width="16%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a href="#id3"><span class="problematic" id="id4">`</span></a></td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>0.087</td>
+<td>0.425</td>
+<td>0.250</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>0.988</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>0.487</td>
+<td>0.338</td>
+<td>0.150</td>
+<td>0.700</td>
+<td>0.963</td>
+<td>0.963</td>
+<td>1.000</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>0.037</td>
+<td>0.000</td>
+<td>0.025</td>
+<td>0.112</td>
+<td>0.838</td>
+<td>0.838</td>
+<td>0.975</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>0.900</td>
+<td>0.675</td>
+<td>0.700</td>
+<td>0.112</td>
+<td>0.600</td>
+<td>0.700</td>
+<td>0.925</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>1.000</td>
+<td>0.975</td>
+<td>0.988</td>
+<td>0.938</td>
+<td>0.650</td>
+<td>0.062</td>
+<td>0.188</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>0.975</td>
+<td>1.000</td>
+<td>0.912</td>
+<td>0.388</td>
+<td>0.125</td>
+<td>0.200</td>
+<td>0.112</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>0.988</td>
+<td>1.000</td>
+<td>0.637</td>
+<td>0.925</td>
+<td>0.362</td>
+</tr>
+</tbody>
+</table>
+<p><em>Psychometric functions for VP01</em>:</p>
+<img alt="_images/vp01_expIII.gif" src="_images/vp01_expIII.gif" />
+<p><em>Psychometric functions for VP02</em>:</p>
+<img alt="_images/vp02_expIII.gif" src="_images/vp02_expIII.gif" />
+<p>The data was too bad to effectively analyze, VP01 had violations of regular minimality for every data point, and VP02 lost the majority of data points.</p>
+<p>This was likely because the experiment was too difficult. This was probably due to the randomisation of the Mondrian background even within the transparent infield, which meant that two &#8220;identical&#8221; infields were actually significantly different even if the mean luminance was the same.</p>
+<p>To prevent this in the future, one could re-run the experiment using the same seed for all stimuli, although this risks the subjects simply learning the 7 stimuli. Or use any other means to make the experiment less difficult, for example, increasing the ratio between infield and surround, etc.</p>
+<div class="section" id="data-experiment-4">
+<h3>Data, Experiment 4:<a class="headerlink" href="#data-experiment-4" title="Permalink to this headline">¶</a></h3>
+<p><em>VP01</em>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%" />
+<col width="16%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a href="#id5"><span class="problematic" id="id6">`</span></a></td>
+<td><blockquote class="first">
+<div>1</div></blockquote>
+<p class="last">0.1125
+0.2375
+0.9125
+0.9000
+0.9750
+0.6875
+0.9625</p>
+</td>
+<td><blockquote class="first">
+<div>2</div></blockquote>
+<p class="last">0.2250
+0.1000
+0.9250
+0.3000
+0.6000
+0.7625
+0.9125</p>
+</td>
+<td><blockquote class="first">
+<div>3</div></blockquote>
+<p class="last">0.9750
+0.9125
+0.0375
+0.7250
+0.3750
+1.0000
+0.4875</p>
+</td>
+<td><blockquote class="first">
+<div>4</div></blockquote>
+<p class="last">0.4250
+0.1875
+0.7875
+0.1750
+0.3375
+0.7125
+0.8625</p>
+</td>
+<td><blockquote class="first">
+<div>5</div></blockquote>
+<p class="last">0.8000
+0.4875
+0.6750
+0.2625
+0.1000
+0.8250
+0.3375</p>
+</td>
+<td><blockquote class="first">
+<div>6</div></blockquote>
+<p class="last">0.5750
+0.7500
+0.9750
+0.8000
+0.8875
+0.2000
+0.9750</p>
+</td>
+<td><blockquote class="first">
+<div>7</div></blockquote>
+<p class="last">0.9500
+0.8500
+0.5250
+0.6125
+0.2625
+0.9750
+0.2125</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Experiments</a><ul>
+<li><a class="reference internal" href="#the-two-experiments">The two experiments</a></li>
+<li><a class="reference internal" href="#stimuli-used">Stimuli used:</a></li>
+<li><a class="reference internal" href="#example-stimuli">Example stimuli:</a></li>
+<li><a class="reference internal" href="#data-experiment-3">Data, Experiment 3:</a><ul>
+<li><a class="reference internal" href="#data-experiment-4">Data, Experiment 4:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="measurements.html"
+                        title="previous chapter">Measurements</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="knownissues.html"
+                        title="next chapter">Known Issues</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/experiments.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="knownissues.html" title="Known Issues"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="measurements.html" title="Measurements"
+             >previous</a> |</li>
+        <li><a href="index.html">StimScripts 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, James McMurray.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

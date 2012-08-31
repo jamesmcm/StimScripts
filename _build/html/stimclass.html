@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="StimScripts 0.1 documentation" href="index.html" />
     <link rel="next" title="Measurements" href="measurements.html" />
-    <link rel="prev" title="Scripts contained in StimScripts" href="scripts.html" /> 
+    <link rel="prev" title="Useful scripts" href="scripts.html" /> 
   </head>
   <body>
     <div class="related">
@@ -43,7 +43,7 @@
           <a href="measurements.html" title="Measurements"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="scripts.html" title="Scripts contained in StimScripts"
+          <a href="scripts.html" title="Useful scripts"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">StimScripts 0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -193,6 +193,7 @@ All the other stimuli classes inherit from this.</div></blockquote>
 <dt id="stimuliclass.CRTTest">
 <em class="property">class </em><tt class="descclassname">stimuliclass.</tt><tt class="descname">CRTTest</tt><big>(</big><em>usingeizo=False</em>, <em>measuring=False</em>, <em>calibrate=True</em>, <em>prefix='data'</em>, <em>waittime=0.1</em>, <em>patchsize=0.5</em>, <em>centralstimgray=400</em>, <em>sinamplitude=1023</em>, <em>freq=0.01</em>, <em>sinoffset=0</em><big>)</big><a class="reference internal" href="_modules/stimuliclass.html#CRTTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stimuliclass.CRTTest" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
+<div><blockquote>
 <div><p>CRTTest produces a patch of a certain luminance in the centre of the screen, and modulates the surround according to a sin function.</p>
 <dl class="docutils">
 <dt>TUB notes:</dt>
@@ -269,7 +270,15 @@ All the other stimuli classes inherit from this.</div></blockquote>
 </tbody>
 </table>
 <blockquote>
-<div>Note that unlike most other stimuli, this does not rely on or produce any PNG files.</div></blockquote>
+<div><p>Note that unlike most other stimuli, this does not rely on or produce any PNG files.</p>
+<p><strong>Example Code:</strong></p>
+</div></blockquote>
+</div></blockquote>
+<dl class="docutils">
+<dt>To display the test on the eizo black and white monitor::</dt>
+<dd>test=CRTTest(usingeizo=True)
+test.run()</dd>
+</dl>
 <dl class="method">
 <dt id="stimuliclass.CRTTest.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.CRTTest.checkCalibrate" title="Permalink to this definition">¶</a></dt>
@@ -473,6 +482,13 @@ X is the distance to the edge, w is the width of the ramp, a is a variable deter
 </div></blockquote>
 </div></blockquote>
 <img alt="_images/cornsweet20120814_1705.png" src="_images/cornsweet20120814_1705.png" style="width: 200px; height: 200px;" />
+<p><strong>Example code</strong>:
+Produce and display small Cornsweet Illusion image on normal monitor (be careful of the image size and monitor size when you make these stimuli):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">=</span><span class="n">Cornsweet</span><span class="p">(</span><span class="n">usingeizo</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">visualdegrees</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span> <span class="c">#Create png file</span>
+<span class="n">test</span><span class="o">=</span><span class="n">Cornsweet</span><span class="p">(</span><span class="n">pngfile</span><span class="o">=</span><span class="s">&quot;cornsweet20120831_1101.png&quot;</span><span class="p">)</span> <span class="c">#Load png file</span>
+<span class="n">test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c">#Display stimuli</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="stimuliclass.Cornsweet.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.Cornsweet.checkCalibrate" title="Permalink to this definition">¶</a></dt>
@@ -512,7 +528,8 @@ X is the distance to the edge, w is the width of the ramp, a is a variable deter
 <dl class="method">
 <dt id="stimuliclass.Cornsweet.run">
 <tt class="descname">run</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/stimuliclass.html#Cornsweet.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stimuliclass.Cornsweet.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This is the main loop for presenting the stimuli, so after intialising the stimuli, call object.run() to present it.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="stimuliclass.Cornsweet.runningLoop">
@@ -862,11 +879,14 @@ X is the distance to the edge, w is the width of the ramp, a is a variable deter
 <div><strong>Example Image</strong>:</div></blockquote>
 </div></blockquote>
 <img alt="_images/mondrian20120713_1126.png" src="_images/mondrian20120713_1126.png" style="width: 200px; height: 200px;" />
-<p><strong>Code Example</strong>:
-To produce encoded unweighted Mondrian stimuli for eizo monitor:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">=</span><span class="n">Mondrian</span><span class="p">(</span><span class="n">usingeizo</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<dl class="docutils">
+<dt><strong>Code Example</strong>:</dt>
+<dd><p class="first">To produce encoded unweighted Mondrian stimuli for eizo monitor:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">=</span><span class="n">Mondrian</span><span class="p">(</span><span class="n">usingeizo</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</dd>
+</dl>
 <dl class="method">
 <dt id="stimuliclass.Mondrian.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.Mondrian.checkCalibrate" title="Permalink to this definition">¶</a></dt>
@@ -1596,11 +1616,14 @@ Todorovic, D. (1987). The Craik-O&#8217;Brien-Cornsweet effect: new varieties an
 </div></blockquote>
 </div></blockquote>
 <img alt="_images/todorovic20120814_1705.png" src="_images/todorovic20120814_1705.png" style="width: 200px; height: 200px;" />
-<p><strong>Code Example</strong>:
-To produce encoded Todorovic stimuli for eizo monitor:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">=</span><span class="n">Todorovic</span><span class="p">(</span><span class="n">usingeizo</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<dl class="docutils">
+<dt><strong>Code Example</strong>:</dt>
+<dd><p class="first">To produce encoded Todorovic stimuli for eizo monitor:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">=</span><span class="n">Todorovic</span><span class="p">(</span><span class="n">usingeizo</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</dd>
+</dl>
 <dl class="method">
 <dt id="stimuliclass.Todorovic.checkCalibrate">
 <tt class="descname">checkCalibrate</tt><big>(</big><big>)</big><a class="headerlink" href="#stimuliclass.Todorovic.checkCalibrate" title="Permalink to this definition">¶</a></dt>
@@ -1900,7 +1923,7 @@ To produce encoded Todorovic stimuli for eizo monitor:</p>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="scripts.html"
-                        title="previous chapter">Scripts contained in <em>StimScripts</em></a></p>
+                        title="previous chapter">Useful scripts</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="measurements.html"
                         title="next chapter">Measurements</a></p>
@@ -1939,7 +1962,7 @@ To produce encoded Todorovic stimuli for eizo monitor:</p>
           <a href="measurements.html" title="Measurements"
              >next</a> |</li>
         <li class="right" >
-          <a href="scripts.html" title="Scripts contained in StimScripts"
+          <a href="scripts.html" title="Useful scripts"
              >previous</a> |</li>
         <li><a href="index.html">StimScripts 0.1 documentation</a> &raquo;</li> 
       </ul>
