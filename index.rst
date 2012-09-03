@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Documentation for *StimScripts* script collection
+Documentation for stimuliclass and scripts
 =================================================
 
-*StimScripts* is a collection of scripts for basic monitor testing, and producing some well-known stimuli.
+*stimuliclass* is a module for basic monitor testing, and producing some well-known stimuli.
 
 Contents:
 
@@ -15,7 +15,8 @@ Contents:
    
    scripts
    stimclass
-   measurements   
+   measurements
+   experiments   
    knownissues  
 
 

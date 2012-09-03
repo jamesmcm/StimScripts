@@ -189,6 +189,11 @@ class CRTTest(BaseMonitorTesting):
    ================ ========== =========== =======================================================================================================
 
     Note that unlike most other stimuli, this does not rely on or produce any PNG files.
+
+    **Example Code:**
+To display the test on the eizo black and white monitor::
+   test=CRTTest(usingeizo=True)
+   test.run()
    """
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, patchsize=0.5, centralstimgray=400, sinamplitude=1023, freq=0.01, sinoffset=0):
         BaseMonitorTesting.__init__(self, usingeizo=usingeizo, measuring=measuring, calibrate=calibrate, prefix=prefix, waittime=waittime)
@@ -279,10 +284,11 @@ class Mondrian(BaseMonitorTesting):
     :width: 200px
 
 **Code Example**:
-To produce encoded unweighted Mondrian stimuli for eizo monitor::
-   test=Mondrian(usingeizo=True, encode=True)
+    To produce encoded unweighted Mondrian stimuli for eizo monitor::
+    
+        test=Mondrian(usingeizo=True, encode=True)
 
-   
+
     '''
 
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, highgray=1023, lowgray=0, step=1, meanlength=5, weights=None, accuracy=0.05, max_cycles=1000, write=False, seed=1, pngfile=None, imagesize=None, encode=True, saveimage=True):
@@ -366,6 +372,12 @@ class Cornsweet(BaseMonitorTesting):
     :height: 200px
     :width: 200px
 
+**Example code**:
+Produce and display small Cornsweet Illusion image on normal monitor (be careful of the image size and monitor size when you make these stimuli)::
+
+   test=Cornsweet(usingeizo=False, encode=False, visualdegrees=[3,3]) #Create png file
+   test=Cornsweet(pngfile="cornsweet20120831_1101.png") #Load png file
+   test.run() #Display stimuli
    """
 
     def __init__(self, usingeizo=False, measuring=False, calibrate=True,prefix="data", waittime=0.1, visualdegrees=None, ppd=128, contrast=1, ramp_width=3, exponent=2.75, mean_lum=511, pngfile=None, encode=True):
@@ -394,6 +406,8 @@ class Cornsweet(BaseMonitorTesting):
             self.pngfile=pngfile
 
     def run(self):
+        """ This is the main loop for presenting the stimuli, so after intialising the stimuli, call object.run() to present it. """
+
         self.showStimuliFromPNG(self.pngfile)
         self.runningLoop()
 
@@ -442,8 +456,9 @@ class Todorovic(BaseMonitorTesting):
     :width: 200px
 
 **Code Example**:
-To produce encoded Todorovic stimuli for eizo monitor::
-   test=Todorovic(usingeizo=True, encode=True)
+    To produce encoded Todorovic stimuli for eizo monitor::
+
+        test=Todorovic(usingeizo=True, encode=True)
 
 
     """

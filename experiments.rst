@@ -53,6 +53,8 @@ When randomisation of the Mondrian was used, the Mondrians were random for all t
 *Plot of surround/infield ratios:*
 
 .. image:: infieldsurround.png
+    :height: 300px
+    :width: 300px
 
 Example stimuli:
 ~~~~~~~~~~~~~~~~
@@ -60,10 +62,14 @@ Example stimuli:
 *Example stimuli for Experiment 3 (with randomised Mondrians):*
 
 .. image:: croppedac.png
+    :height: 300px
+
 
 *Example stimuli for Experiment 4:*
 
 .. image:: croppednc.png
+    :height: 300px
+
 
 Data, Experiment 3:
 ~~~~~~~~~~~~~~~~~~~~~
@@ -88,6 +94,10 @@ Data, Experiment 3:
 7 0.938  0.838 0.775 0.825 0.087 0.250 0.125
 = ====== ===== ===== ===== ===== ===== ======
 
+*Psychometric functions for VP01*:
+
+.. image:: animations/vp01_expIII.gif
+
 *VP02*:
 
 = ====== ===== ===== ===== ===== ===== ======
@@ -108,14 +118,15 @@ Data, Experiment 3:
 7 1.000  1.000 0.988 1.000 0.637 0.925 0.362
 = ====== ===== ===== ===== ===== ===== ======
 
-*Psychometric functions for VP01*:
 
-.. image:: animations/vp01_expIII.gif
 
 *Psychometric functions for VP02*:
 
 .. image:: animations/vp02_expIII.gif
 
+
+Experiment 3 Discussion
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The data was too bad to effectively analyze, VP01 had violations of regular minimality for every data point, and VP02 lost the majority of data points.
 
@@ -124,26 +135,93 @@ This was likely because the experiment was too difficult. This was probably due 
 To prevent this in the future, one could re-run the experiment using the same seed for all stimuli, although this risks the subjects simply learning the 7 stimuli. Or use any other means to make the experiment less difficult, for example, increasing the ratio between infield and surround, etc.
 
 
-Data, Experiment 4:
-===================
+Data VP01, Experiment 4:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *VP01*:
 
-= ======= ====== ====== ====== ====== ====== =======
+= ======= ======= ====== ====== ====== ====== =======
 `   1       2      3      4      5      6      7
 
-  0.1125  0.2250 0.9750 0.4250 0.8000 0.5750 0.9500
-  0.2375  0.1000 0.9125 0.1875 0.4875 0.7500 0.8500
-  0.9125  0.9250 0.0375 0.7875 0.6750 0.9750 0.5250
-  0.9000  0.3000 0.7250 0.1750 0.2625 0.8000 0.6125
-  0.9750  0.6000 0.3750 0.3375 0.1000 0.8875 0.2625
-  0.6875  0.7625 1.0000 0.7125 0.8250 0.2000 0.9750
-  0.9625  0.9125 0.4875 0.8625 0.3375 0.9750 0.2125
+1  0.1125  0.2250 0.9750 0.4250 0.8000 0.5750 0.9500
+2  0.2375  0.1000 0.9125 0.1875 0.4875 0.7500 0.8500
+3  0.9125  0.9250 0.0375 0.7875 0.6750 0.9750 0.5250
+4  0.9000  0.3000 0.7250 0.1750 0.2625 0.8000 0.6125
+5  0.9750  0.6000 0.3750 0.3375 0.1000 0.8875 0.2625
+6  0.6875  0.7625 1.0000 0.7125 0.8250 0.2000 0.9750
+7  0.9625  0.9125 0.4875 0.8625 0.3375 0.9750 0.2125
 
-= ======= ====== ====== ====== ====== ====== =======
+= ======= ======= ====== ====== ====== ====== =======
  
+There are no violations of regular minimality at all.
+
          
+*Psychometric functions for VP01*:
+
+.. image:: animations/vp01_expIV.gif
+
+*MDS plot for VP01*:
+
+.. image:: mdsvp01expIV.png
+    :height: 300px
+    :width: 300px
+
+*Stress plot for VP01*:
+
+.. image:: stressvp01expIV.png
+    :height: 300px
+    :width: 300px
+
+
+Data VP02, Experiment 4:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+*VP02*:
+
+= ======= ======= ====== ====== ====== ====== =======
+`   1       2      3      4      5      6      7
+
+1  0.1875  0.5500 1.0000 0.7500 0.9875 0.9375 1.0000
+2  0.5500  0.1875 0.9750 0.3750 0.7750 0.9750 1.0000
+3  1.0000  1.0000 0.0625 0.7500 0.7750 1.0000 0.8000
+4  0.9500  0.5750 0.8625 0.2000 0.4625 0.9500 0.9000
+5  0.9875  0.8875 0.9375 0.3875 0.3125 0.9125 0.7750
+6  0.9625  0.9750 1.0000 0.9625 0.9625 0.2500 1.0000
+7  1.0000  1.0000 0.9500 0.8750 0.4000 1.0000 0.2500
+
+= ======= ======= ====== ====== ====== ====== =======
+
+There are no violations of regular minimality at all. Although quite
+a few 1’s, which means that the experiment may have been too
+easy.
+
          
-         
-         
-         
+*Psychometric functions for VP02*:
+
+.. image:: animations/vp02_expIV.gif
+
+*MDS plot for VP02*:
+
+.. image:: mdsvp02expIV.png
+    :height: 300px
+    :width: 300px
+
+*Stress plot for VP02*:
+
+.. image:: stressvp02expIV.png
+    :height: 300px
+    :width: 300px
+
+
+Experiment 4 Discussion
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The two dimensional solution means that either perceived
+transparency is not the second dimension with the grayscale
+images, or that there are additional effects and the additional
+dimension is one of them.
+
+However, the stress is not extremely high in the 1-D solution (but
+also not low), so perhaps more data may resolve the confusion. I.e.
+for VP01 a 1-dimensional solution is completely reasonable.
+
